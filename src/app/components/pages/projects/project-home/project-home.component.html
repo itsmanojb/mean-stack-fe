@@ -1,0 +1,22 @@
+<p>project-home works!</p>
+<nav>
+  <a
+    [routerLink]="'/project/' + projectId + '/overview'"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Overview</a
+  >
+  <a
+    [routerLink]="'/project/' + projectId + '/analytics'"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Analytics</a
+  >
+  <a
+    [routerLink]="'/project/' + projectId + '/tasks'"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Tasks</a
+  >
+</nav>
+<router-outlet></router-outlet>
