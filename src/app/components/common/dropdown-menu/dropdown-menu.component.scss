@@ -1,0 +1,83 @@
+.dropdown-menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 16px;
+}
+
+/* .menu {
+  position: absolute;
+  min-width: 150px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 4px 0;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease-out;
+  visibility: hidden;
+} */
+
+.menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.menu li:hover,
+.menu li.highlighted {
+  background-color: #eee;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu {
+  position: absolute;
+  min-width: 150px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 4px 0;
+  z-index: 1000;
+  animation: scaleUp 0.18s ease-out;
+  transform-origin: top left; /* Default — can be overridden dynamically */
+  visibility: hidden;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.menu li:hover,
+.menu li.highlighted {
+  background-color: #eee;
+}
