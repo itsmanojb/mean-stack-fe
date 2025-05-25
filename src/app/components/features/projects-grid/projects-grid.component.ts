@@ -26,11 +26,11 @@ export class ProjectsGridComponent {
   ];
 
   onOptionSelected(opt: any) {
-    console.log('Selected:', opt);
+    this.deleteProject('test');
   }
 
-  async deleteProject(project: Project) {
-    const confirmed = await this.confirmService.confirm(`Are you sure you want to delete ${project.projectName}?`);
+  async deleteProject(project: string) {
+    const confirmed = await this.confirmService.confirm(`Are you sure you want to delete ${project}?`);
     if (confirmed) {
       // proceed with delete
     } else {

@@ -1,5 +1,5 @@
 <div class="backdrop">
-  <div *ngIf="isVisible" class="dialog" @fadeScale>
+  <div *ngIf="isVisible" class="dialog" @fadeScale #dialogRef>
     <h2>{{ title }}</h2>
     <p>{{ message }}</p>
     <div class="actions">

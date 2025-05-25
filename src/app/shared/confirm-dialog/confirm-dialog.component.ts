@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, Output, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnDestroy,
+  HostListener,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { NgIf } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 
@@ -17,7 +27,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
   ],
 })
-export class ConfirmDialogComponent implements OnDestroy {
+export class ConfirmDialogComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('dialogRef') dialogRef!: ElementRef<HTMLElement>;
+
   @Input() message = '';
   @Input() title = 'Confirm';
 
@@ -28,6 +40,11 @@ export class ConfirmDialogComponent implements OnDestroy {
   isVisible = true;
 
   constructor(private host: ElementRef<HTMLElement>) {}
+
+  ngAfterViewInit(): void {
+    // Focus first focusable element after dialog loads
+    setTimeout(() => this.trapFocus());
+  }
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscape(event: KeyboardEvent) {
@@ -59,7 +76,38 @@ export class ConfirmDialogComponent implements OnDestroy {
     }, 200); // match the leave animation duration
   }
 
+  private trapFocus() {
+    const dialog = this.dialogRef.nativeElement;
+    const focusable = dialog.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    first.focus();
+
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    dialog.addEventListener('keydown', handleKeydown);
+
+    this.cleanupFn = () => dialog.removeEventListener('keydown', handleKeydown);
+  }
+
+  private cleanupFn: (() => void) | null = null;
+
   ngOnDestroy(): void {
-    // Clean up if needed
+    this.cleanupFn?.();
   }
 }

@@ -3,7 +3,6 @@
     class="modal-backdrop"
     [@fadeBackdrop]="animatingOut ? 'void' : 'visible'"
     (@fadeBackdrop.done)="onAnimationDone($event)"
-    (click)="close()"
   ></div>
 
   <div
