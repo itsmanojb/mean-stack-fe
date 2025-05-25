@@ -27,6 +27,7 @@
       "@interfaces/*": ["app/shared/interfaces/*"],
       "@pages/*": ["app/components/pages/*"],
       "@services/*": ["app/services/*"],
+      "@shared/*": ["app/shared/*"],
       "@utils/*": ["app/utilities/*"],
       "@environments/*": ["environments/*"]
     }

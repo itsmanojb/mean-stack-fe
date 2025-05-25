@@ -1,0 +1,30 @@
+<ng-container *ngIf="true">
+  <div
+    class="modal-backdrop"
+    [@fadeBackdrop]="animatingOut ? 'void' : 'visible'"
+    (@fadeBackdrop.done)="onAnimationDone($event)"
+    (click)="close()"
+  ></div>
+
+  <div
+    class="modal"
+    [ngClass]="size"
+    [@slideModal]="animatingOut ? 'void' : 'visible'"
+    (@slideModal.done)="onAnimationDone($event)"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="modal-header">
+      <h3>{{ title }}</h3>
+      <button (click)="close()">✖</button>
+    </div>
+
+    <div class="modal-body">
+      <ng-template #contentContainer></ng-template>
+    </div>
+
+    <div class="modal-footer" *ngIf="showFooter">
+      <button (click)="close()">Cancel</button>
+      <button (click)="onConfirm()">Confirm</button>
+    </div>
+  </div>
+</ng-container>

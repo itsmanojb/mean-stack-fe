@@ -4,7 +4,7 @@
   padding-inline: 16px;
 }
 
-.controls {
+.toolbar {
   display: flex;
   gap: 2px;
 
@@ -25,4 +25,10 @@
       font-weight: bold;
     }
   }
+}
+
+.controls {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
 }

@@ -1,8 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Project } from '@interfaces/project.interface';
 import { ProjectsGridComponent } from '@components/features/projects-grid/projects-grid.component';
 import { ProjectsListComponent } from '@components/features/projects-list/projects-list.component';
+import { ProjectFormComponent } from '@components/features/project-form/project-form.component';
 import { formatCurrency } from '@utils/misc/helper';
+import { ModalService } from '@shared/modal/modal.service';
 
 const DummyProjects = [
   {
@@ -270,9 +273,10 @@ const DummyProjects = [
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ProjectsGridComponent, ProjectsListComponent],
+  imports: [ProjectsGridComponent, ProjectsListComponent, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
+  providers: [ModalService],
 })
 export class DashboardComponent {
   loading = signal(true);
@@ -280,7 +284,13 @@ export class DashboardComponent {
 
   viewAs: 'grid' | 'list' = 'grid';
 
-  constructor() {}
+  /** Add Project modal props */
+
+  modalVisible = false;
+  modalTitle = '';
+  modalContent: any = null;
+
+  constructor(private modal: ModalService) {}
 
   ngOnInit() {
     this.loadData();
@@ -299,5 +309,22 @@ export class DashboardComponent {
       this.items.set(mappedData);
       this.loading.set(false);
     }, 2000);
+  }
+
+  openProjectModal() {
+    this.modal.open(
+      ProjectFormComponent,
+      { name: 'Manoj' },
+      {
+        submitted: (value) => {
+          console.log('Submitted:', value);
+        },
+      },
+      {
+        title: 'User Form',
+        size: 'small',
+        showFooter: false,
+      },
+    );
   }
 }
