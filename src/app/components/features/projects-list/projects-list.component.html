@@ -1,0 +1,36 @@
+@if (loading()) {
+  <div class="list">
+    @for (_ of [].constructor(12); track $index) {
+      <div class="project-row skel">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="list" [@staggerAnimation]>
+    @for (item of projects(); track $index) {
+      <div class="project-row">
+        <div>
+          <a [routerLink]="['/project', item.id]">{{ item.projectName }}</a>
+        </div>
+        <div>{{ item.company }}, {{ item.country }}</div>
+        <div>{{ item.valuation }}</div>
+        <div>{{ item.teamSize }}</div>
+        <div>{{ item.taskCount }}</div>
+        <div>2mo Ago</div>
+        <div>
+          <app-avatars-group [items]="item.users" [aligned]="'end'"></app-avatars-group>
+        </div>
+        <div class="actions"><button type="button">...</button></div>
+      </div>
+    } @empty {
+      <p>No projects found.</p>
+    }
+  </div>
+}

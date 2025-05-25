@@ -1,3 +1,3 @@
 export const AppConstants = {
-    appTitle: 'MEAN Stack Application',
+  appTitle: 'Angular 19',
 } as const;

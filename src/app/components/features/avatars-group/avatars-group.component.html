@@ -1,0 +1,5 @@
+<div class="avatar-group" [class.right-align]="aligned() === 'end'">
+  @for (item of initials(); track $index) {
+    <div class="avatar">{{ item }}</div>
+  }
+</div>

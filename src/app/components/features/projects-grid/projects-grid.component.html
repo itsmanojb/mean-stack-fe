@@ -1,0 +1,67 @@
+@if (loading()) {
+  <div class="grid">
+    @for (_ of [].constructor(12); track $index) {
+      <div class="project-card skel">
+        <div class="header">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+        <div class="infolist">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+        <div class="footer">
+          <div class="skeleton"></div>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="grid" [@staggerAnimation]>
+    @for (item of projects(); track $index) {
+      <div class="project-card">
+        <div class="header">
+          <h3 class="title">
+            <a [routerLink]="['/project', item.id]">
+              {{ item.projectName }}
+            </a>
+          </h3>
+          <div>
+            <div class="icon">
+              <!-- <img src="" [alt]="item.industry" /> -->
+              {{ item.industry.slice(0, 2).toUpperCase() }}
+            </div>
+            <div class="actions"><button type="button">...</button></div>
+          </div>
+        </div>
+        <ul class="infolist">
+          <li>{{ item.company }}, {{ item.country }}</li>
+          <li>Revenue: {{ item.valuation }}</li>
+          <li>{{ item.teamSize }} team members and {{ item.taskCount }} tasks</li>
+        </ul>
+        <div
+          class="progress"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [attr.aria-valuenow]="item.completionPct"
+          aria-label="Project completion progress"
+        >
+          <span class="sr-only">40% complete</span>
+          <span class="progress-bar" ngStyle="width: `${item.completionPct}%`"
+            >{{ item.completionPct }}%</span
+          >
+        </div>
+        <div class="footer">
+          <span class="meta">Updated 2mo ago</span>
+          <div>
+            <app-avatars-group [items]="item.users" [aligned]="'end'"></app-avatars-group>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p>No projects found.</p>
+    }
+  </div>
+}

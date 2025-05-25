@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  hasAccess() {
-    return false; // Replace with actual authentication logic
+  isLoggedIn() {
+    return true;
   }
 
   constructor() {}

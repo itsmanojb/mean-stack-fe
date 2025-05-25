@@ -1,6 +1,21 @@
-<p>dashboard works!</p>
-<nav>
-  <a class="btn" [routerLink]="['/project', 1]">Project 1</a>
-  <a class="btn" [routerLink]="['/project', 2]">Project 2</a>
-  <a class="btn" [routerLink]="['/help']">Incorrect</a>
-</nav>
+<div class="container">
+  <h2>Projects</h2>
+  <div class="controls">
+    <button type="button" [class.active]="viewAs === 'grid'" (click)="viewAs = 'grid'">
+      Grid
+    </button>
+    <button type="button" [class.active]="viewAs === 'list'" (click)="viewAs = 'list'">
+      List
+    </button>
+  </div>
+  <section>
+    @switch (viewAs) {
+      @case ("grid") {
+        <app-projects-grid [items]="items()" [loading]="loading()"></app-projects-grid>
+      }
+      @case ("list") {
+        <app-projects-list [items]="items()" [loading]="loading()"></app-projects-list>
+      }
+    }
+  </section>
+</div>

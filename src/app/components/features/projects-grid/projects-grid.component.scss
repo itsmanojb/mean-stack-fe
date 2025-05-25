@@ -1,0 +1,146 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding-block: 1rem;
+  gap: 16px;
+}
+
+.project-card {
+  --card-bg: #fff;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  background-color: var(--card-bg);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s;
+
+  .header {
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 1rem;
+
+    > div {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+  }
+
+  .icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 4px;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    background-color: #e8eefb;
+    color: var(--primary-color);
+  }
+
+  .actions {
+    button {
+      width: 30px;
+      background-color: var(--card-bg);
+      border: 1px solid #eee;
+      border-radius: 4px;
+      transform: rotate(-90deg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+  }
+
+  .title {
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .infolist {
+    margin: 0;
+    padding: 0 0 1rem 0;
+    list-style-type: none;
+    font-size: 0.9rem;
+
+    li:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+
+  .progress {
+    height: 3px;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .progress-bar {
+      height: 100%;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    .meta {
+      color: #888;
+      font-size: 0.8rem;
+    }
+  }
+
+  &:not(.skel):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--item-hover-shadow);
+  }
+
+  &.skel {
+    height: 280px;
+    .header {
+      .skeleton {
+        &:nth-of-type(2) {
+          height: 50px;
+          width: 50px;
+        }
+        &:nth-of-type(1) {
+          height: 18px;
+          width: 150px;
+        }
+      }
+    }
+    .infolist {
+      margin: 20px 0 0;
+      .skeleton {
+        margin-bottom: 8px;
+        height: 8px;
+        width: 80%;
+
+        &:nth-of-type(2) {
+          width: 70%;
+        }
+      }
+    }
+
+    .footer {
+      border-top: 2px solid #eee;
+      padding-top: 16px;
+      .skeleton {
+        height: 10px;
+        width: 40%;
+        margin-top: 8px;
+      }
+    }
+  }
+}

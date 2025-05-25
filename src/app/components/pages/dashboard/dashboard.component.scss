@@ -1,0 +1,28 @@
+.container {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.controls {
+  display: flex;
+  gap: 2px;
+
+  button {
+    --bg: #fff;
+    --color: #333;
+    padding: 8px 16px;
+    border: 1px solid var(--border, #ddd);
+    color: var(--color);
+    background-color: var(--bg);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &.active {
+      --bg: var(--primary-color);
+      --color: #fff;
+      --border: var(--bg);
+      font-weight: bold;
+    }
+  }
+}

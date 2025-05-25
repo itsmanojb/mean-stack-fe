@@ -24,6 +24,7 @@
       "@app/*": ["app/*"],
       "@components/*": ["app/components/*"],
       "@constants/*": ["app/shared/constants/*"],
+      "@interfaces/*": ["app/shared/interfaces/*"],
       "@pages/*": ["app/components/pages/*"],
       "@services/*": ["app/services/*"],
       "@utils/*": ["app/utilities/*"],
