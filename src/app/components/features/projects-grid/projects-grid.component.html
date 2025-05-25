@@ -32,7 +32,7 @@
               <!-- <img src="" [alt]="item.industry" /> -->
               {{ item.industry.slice(0, 2).toUpperCase() }}
             </div>
-            <div class="actions"><button type="button">...</button></div>
+            <div class="actions"><button type="button" (click)="deleteProject(item)">...</button></div>
           </div>
         </div>
         <ul class="infolist">
@@ -49,9 +49,7 @@
           aria-label="Project completion progress"
         >
           <span class="sr-only">40% complete</span>
-          <span class="progress-bar" ngStyle="width: `${item.completionPct}%`"
-            >{{ item.completionPct }}%</span
-          >
+          <span class="progress-bar" ngStyle="width: `${item.completionPct}%`">{{ item.completionPct }}%</span>
         </div>
         <div class="footer">
           <span class="meta">Updated 2mo ago</span>

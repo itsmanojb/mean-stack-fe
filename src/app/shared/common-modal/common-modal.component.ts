@@ -15,10 +15,10 @@ import { trigger, state, style, animate, transition, AnimationEvent } from '@ang
 import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-common-modal',
   imports: [NgClass, NgIf],
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  templateUrl: './common-modal.component.html',
+  styleUrls: ['./common-modal.component.scss'],
   animations: [
     trigger('fadeBackdrop', [
       state('void', style({ opacity: 0 })),
@@ -32,7 +32,7 @@ import { NgClass, NgIf } from '@angular/common';
     ]),
   ],
 })
-export class ModalComponent implements AfterViewInit, OnDestroy {
+export class CommonModalComponent implements AfterViewInit, OnDestroy {
   @Input() title = '';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() showFooter = false;

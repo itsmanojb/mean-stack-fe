@@ -1,9 +1,9 @@
 import { ApplicationRef, ComponentRef, Injectable, Type, createComponent } from '@angular/core';
-import { ModalComponent } from './modal.component';
+import { CommonModalComponent } from './common-modal.component';
 
 @Injectable({ providedIn: 'root' })
-export class ModalService {
-  private modalRef?: ComponentRef<ModalComponent>;
+export class CommonModalService {
+  private modalRef?: ComponentRef<CommonModalComponent>;
 
   constructor(private appRef: ApplicationRef) {}
 
@@ -19,7 +19,7 @@ export class ModalService {
   ) {
     if (this.modalRef) return; // prevent duplicate modals
 
-    this.modalRef = createComponent(ModalComponent, {
+    this.modalRef = createComponent(CommonModalComponent, {
       environmentInjector: this.appRef.injector,
     });
 

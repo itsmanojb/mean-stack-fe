@@ -5,7 +5,7 @@ import { ProjectsGridComponent } from '@components/features/projects-grid/projec
 import { ProjectsListComponent } from '@components/features/projects-list/projects-list.component';
 import { ProjectFormComponent } from '@components/features/project-form/project-form.component';
 import { formatCurrency } from '@utils/misc/helper';
-import { ModalService } from '@shared/modal/modal.service';
+import { CommonModalService } from '@app/shared/common-modal/common-modal.service';
 import { ToastService } from '@shared/toast/toast.service';
 
 const DummyProjects = [
@@ -291,7 +291,7 @@ export class DashboardComponent {
   modalContent: any = null;
 
   constructor(
-    private modal: ModalService,
+    private modal: CommonModalService,
     private toast: ToastService,
   ) {}
 
