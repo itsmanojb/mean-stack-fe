@@ -1,0 +1,16 @@
+<ng-container
+  *ngFor="let position of ['top-left', 'top-right', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center']"
+>
+  <div [ngClass]="'toast-container ' + position">
+    <div
+      class="toast"
+      *ngFor="let toast of toastGroups[position] || []"
+      [@toastAnimation]="getAnimationTrigger(position)"
+      [ngClass]="toast.type"
+    >
+      <div class="message">{{ toast.message }}</div>
+      <button *ngIf="!toast.autoDismiss" (click)="remove(toast.id)">×</button>
+      <div *ngIf="toast.autoDismiss" class="progress" [style.animationDuration]="toast.duration + 'ms'"></div>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,89 @@
+.toast-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast-container.top-left {
+  top: 1rem;
+  left: 1rem;
+  align-items: flex-start;
+}
+
+.toast-container.top-right {
+  top: 1rem;
+  right: 1rem;
+  align-items: flex-end;
+}
+
+.toast-container.top-center {
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.toast-container.bottom-left {
+  bottom: 1rem;
+  left: 1rem;
+  align-items: flex-start;
+}
+
+.toast-container.bottom-right {
+  bottom: 1rem;
+  right: 1rem;
+  align-items: flex-end;
+}
+
+.toast-container.bottom-center {
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.toast {
+  pointer-events: all;
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 220px;
+  max-width: 300px;
+  position: relative;
+}
+
+.toast.success {
+  background: #4caf50;
+}
+.toast.error {
+  background: #f44336;
+}
+.toast.info {
+  background: #2196f3;
+}
+.toast.warning {
+  background: #ff9800;
+}
+
+.toast .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  animation: shrink linear forwards;
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

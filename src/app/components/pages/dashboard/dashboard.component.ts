@@ -6,6 +6,7 @@ import { ProjectsListComponent } from '@components/features/projects-list/projec
 import { ProjectFormComponent } from '@components/features/project-form/project-form.component';
 import { formatCurrency } from '@utils/misc/helper';
 import { ModalService } from '@shared/modal/modal.service';
+import { ToastService } from '@shared/toast/toast.service';
 
 const DummyProjects = [
   {
@@ -276,7 +277,6 @@ const DummyProjects = [
   imports: [ProjectsGridComponent, ProjectsListComponent, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
-  providers: [ModalService],
 })
 export class DashboardComponent {
   loading = signal(true);
@@ -290,7 +290,10 @@ export class DashboardComponent {
   modalTitle = '';
   modalContent: any = null;
 
-  constructor(private modal: ModalService) {}
+  constructor(
+    private modal: ModalService,
+    private toast: ToastService,
+  ) {}
 
   ngOnInit() {
     this.loadData();
@@ -308,6 +311,7 @@ export class DashboardComponent {
     setTimeout(() => {
       this.items.set(mappedData);
       this.loading.set(false);
+      this.toast.success('Data loaded successfully');
     }, 2000);
   }
 
