@@ -1,0 +1,82 @@
+:host {
+  position: absolute;
+  display: block; /* Make sure it's not display: none */
+  opacity: 1; /* Ensure not hidden by fade logic */
+  z-index: 1000; /* Ensure above other elements */
+  pointer-events: none;
+}
+
+[appTooltip] {
+  position: relative;
+  display: inline-block; /* ensures width/height can be calculated accurately */
+}
+
+.tooltip-content {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+  position: relative;
+  transform: scale(0.95);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+:host(.visible) .tooltip-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tooltip-arrow {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-style: solid;
+}
+
+/* Arrow positions (same as before) */
+
+/* Themes */
+.dark {
+  background: #333;
+  color: white;
+}
+
+.dark .tooltip-arrow.top {
+  border-color: #333 transparent transparent transparent;
+}
+
+.dark .tooltip-arrow.bottom {
+  border-color: transparent transparent #333 transparent;
+}
+
+.dark .tooltip-arrow.left {
+  border-color: transparent transparent transparent #333;
+}
+
+.dark .tooltip-arrow.right {
+  border-color: transparent #333 transparent transparent;
+}
+
+.light {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.light .tooltip-arrow.top {
+  border-color: #fff transparent transparent transparent;
+}
+
+.light .tooltip-arrow.bottom {
+  border-color: transparent transparent #fff transparent;
+}
+
+.light .tooltip-arrow.left {
+  border-color: transparent transparent transparent #fff;
+}
+
+.light .tooltip-arrow.right {
+  border-color: transparent #fff transparent transparent;
+}

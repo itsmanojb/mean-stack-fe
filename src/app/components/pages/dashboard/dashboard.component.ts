@@ -7,6 +7,7 @@ import { ProjectFormComponent } from '@components/features/project-form/project-
 import { formatCurrency } from '@utils/misc/helper';
 import { CommonModalService } from '@app/shared/common-modal/common-modal.service';
 import { ToastService } from '@shared/toast/toast.service';
+import { TooltipDirective } from '@shared/tooltip/tooltip.directive';
 
 const DummyProjects = [
   {
@@ -274,7 +275,7 @@ const DummyProjects = [
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ProjectsGridComponent, ProjectsListComponent, CommonModule],
+  imports: [ProjectsGridComponent, ProjectsListComponent, CommonModule, TooltipDirective],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
