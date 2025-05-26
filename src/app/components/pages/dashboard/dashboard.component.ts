@@ -8,6 +8,7 @@ import { formatCurrency } from '@utils/misc/helper';
 import { CommonModalService } from '@app/shared/common-modal/common-modal.service';
 import { ToastService } from '@shared/toast/toast.service';
 import { TooltipDirective } from '@shared/tooltip/tooltip.directive';
+import { SelectDropdownComponent, SelectItem } from '@shared/select-dropdown/select-dropdown.component';
 
 const DummyProjects = [
   {
@@ -275,7 +276,7 @@ const DummyProjects = [
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ProjectsGridComponent, ProjectsListComponent, CommonModule, TooltipDirective],
+  imports: [ProjectsGridComponent, ProjectsListComponent, CommonModule, TooltipDirective, SelectDropdownComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -331,5 +332,32 @@ export class DashboardComponent {
         showFooter: false,
       },
     );
+  }
+
+  myItems: SelectItem[] = [
+    {
+      label: 'Alice Johnson',
+      value: { id: 1, name: 'Alice Johnson', role: 'Admin' },
+      group: 'Team A',
+    },
+    {
+      label: 'Bob Smith',
+      value: { id: 2, name: 'Bob Smith', role: 'Editor' },
+      group: 'Team A',
+    },
+    {
+      label: 'Charlie Adams',
+      value: { id: 3, name: 'Charlie Adams', role: 'Viewer' },
+      group: 'Team B',
+    },
+    {
+      label: 'Diana Prince',
+      value: { id: 4, name: 'Diana Prince', role: 'Admin' },
+      group: 'Team B',
+    },
+  ];
+
+  onValueChange(e: any) {
+    console.log('e', e);
   }
 }

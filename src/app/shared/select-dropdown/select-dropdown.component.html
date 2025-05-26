@@ -1,0 +1,125 @@
+<ng-template
+  cdk-connected-overlay
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayOpen]="dropdownOpen()"
+  [cdkConnectedOverlayPositions]="overlayPositions"
+  (backdropClick)="closeDropdown()"
+  [cdkConnectedOverlayPanelClass]="'dropdown-panel'"
+  cdkConnectedOverlayBackdropClass="transparent-backdrop"
+>
+  @if (dropdownOpen()) {
+    <div class="dropdown-wrapper" @dropdownAnimation tabindex="0" (keydown)="onKeyDown($event)">
+      <div class="dropdown-content" (click)="$event.stopPropagation()">
+        <div class="dropdown">
+          <input
+            type="text"
+            placeholder="Search..."
+            [(ngModel)]="searchText"
+            (ngModelChange)="searchText.set($event)"
+            class="search-box"
+          />
+
+          @if (normalizedPreselected.length) {
+            <div class="preselected-items">
+              @for (item of normalizedPreselected; track $index; let i = $index) {
+                <div class="dropdown-item" [class.selected]="isSelected(item)" (click)="onItemToggle(item)">
+                  <label for="preselected-{{ i }}">
+                    <input
+                      type="checkbox"
+                      [checked]="isSelected(item)"
+                      id="preselected-{{ i }}"
+                      [disabled]="item.disabled"
+                    />
+                    <span>{{ item.label }}</span>
+                  </label>
+                </div>
+              }
+            </div>
+          }
+
+          @if (multiple && groupedItems().length === 1 && !groupedItems()[0].group) {
+            <div class="group-title" (click)="toggleSelectAll()">
+              <label for="all-cb">
+                <input type="checkbox" [checked]="isAllSelected()" id="all-cb" />
+                <span>Select All</span>
+              </label>
+            </div>
+          }
+
+          @for (group of groupedItems(); track $index; let i = $index) {
+            @if (group.group) {
+              <div class="group-title">
+                <label for="group-{{ i }}">
+                  <input
+                    type="checkbox"
+                    id="group-{{ i }}"
+                    [checked]="isAllSelectedInGroup(group.items)"
+                    [indeterminate]="isIndeterminateInGroup(group.items)"
+                    (change)="toggleSelectAllInGroup(group.items)"
+                    [disabled]="isAllDisabledInGroup(group.items)"
+                  />
+                  <span>
+                    {{ group.group }}
+                  </span>
+                </label>
+              </div>
+            }
+
+            <div class="dropdown-items">
+              @for (item of group.items; track $index; let j = $index) {
+                <div
+                  class="dropdown-item"
+                  [id]="'dropdown-item-' + i * groupedItems()[i].items.length + j"
+                  [class.selected]="isSelected(item)"
+                  [class.disabled]="isItemDisabled(item)"
+                  [class.focused]="focusedIndex === i * groupedItems()[i].items.length + j"
+                  (click)="!isItemDisabled(item) && toggleSelection(item)"
+                >
+                  @if (multiple) {
+                    <label for="item-{{ i * groupedItems()[i].items.length + j }}">
+                      <input
+                        type="checkbox"
+                        id="item-{{ i * groupedItems()[i].items.length + j }}"
+                        [checked]="isSelected(item)"
+                        [disabled]="normalizeItem(item).disabled"
+                        (change)="onItemToggle(item)"
+                      />
+                      <span>
+                        @if (isSelectItem(item)) {
+                          {{ normalizeItem(item).label }}
+                        } @else {
+                          {{ item }}
+                        }
+                      </span>
+                    </label>
+                  } @else {
+                    <label>
+                      @if (isSelectItem(item)) {
+                        {{ normalizeItem(item).label }}
+                      } @else {
+                        {{ item }}
+                      }
+                    </label>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</ng-template>
+
+<div #origin="cdkOverlayOrigin" cdkOverlayOrigin></div>
+
+<div class="select-trigger">
+  <div class="value-text" (click)="toggleDropdown()" #triggerButton>
+    {{ displayText() }}
+  </div>
+
+  @if (showClearButton && selectedItems().length > 0) {
+    <button type="button" (click)="clearAllSelections()">Clear All</button>
+  }
+</div>

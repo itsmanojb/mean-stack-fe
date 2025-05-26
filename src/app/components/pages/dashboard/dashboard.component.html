@@ -5,6 +5,22 @@
       Add Project
     </button>
     <div class="controls">
+      <div class="dd">
+        <app-select-dropdown
+          [items]="myItems"
+          [preselected]="[
+            {
+              label: 'Alice Johnson',
+              value: { id: 1, name: 'Alice Johnson', role: 'Admin' },
+              group: 'Team A',
+            },
+          ]"
+          [multiple]="true"
+          [filterKey]="'name'"
+          [hideDisabled]="false"
+          (valueChange)="onValueChange($event)"
+        ></app-select-dropdown>
+      </div>
       <button type="button" [class.active]="viewAs === 'grid'" (click)="viewAs = 'grid'">Grid</button>
       <button type="button" [class.active]="viewAs === 'list'" (click)="viewAs = 'list'">List</button>
     </div>
