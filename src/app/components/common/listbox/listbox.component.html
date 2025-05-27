@@ -1,0 +1,115 @@
+<div class="select-list" [class.disabled]="disabled">
+  <div
+    class="select-control"
+    tabindex="0"
+    (click)="toggleDropdown()"
+    (keydown)="onControlKeydown($event)"
+    [attr.aria-haspopup]="true"
+    role="combobox"
+    [attr.aria-expanded]="dropdownOpen"
+    [attr.aria-disabled]="disabled"
+    [title]="placeholder"
+  >
+    <span class="placeholder" *ngIf="!selectedValues.length">{{ placeholder }}</span>
+    <span class="selected-value" *ngIf="selectedValues.length && !multi">
+      {{ selectedValueText }}
+    </span>
+    <span class="selected-value" *ngIf="selectedValues.length && multi"> {{ selectedValues.length }} selected </span>
+    <span>
+      <button
+        *ngIf="selectedValues.length"
+        class="clear-button"
+        (click)="clearSelection($event)"
+        aria-label="Clear selection"
+        type="button"
+      >
+        ✕
+      </button>
+      <span class="arrow">&#9662;</span>
+    </span>
+  </div>
+
+  <div
+    class="dropdown-panel"
+    @dropdownAnimation
+    *ngIf="dropdownOpen"
+    role="listbox"
+    [attr.aria-busy]="loading || loadingMore"
+    (scroll)="onScroll($event)"
+    #scrollContainer
+  >
+    <div class="info-text" *ngIf="initialSelected.length > 0; else defaultListView">
+      <div
+        class="option"
+        *ngFor="let item of initialSelected; let i = index"
+        [class.selected]="isSelected(item)"
+        [class.focused]="i === focusedIndex"
+        [class.disabled]="false"
+        (click)="selectItem(item)"
+        role="option"
+        [attr.aria-selected]="isSelected(item)"
+        tabindex="-1"
+      >
+        {{ item.label }}
+      </div>
+    </div>
+    <ng-template #defaultListView>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search..."
+        [value]="searchText"
+        (input)="onSearchInput($any($event.target).value)"
+        (keydown)="onSearchKeydown($event)"
+        [disabled]="disabled"
+        aria-label="Search options"
+      />
+
+      <ng-container *ngIf="!loading && !error; else loadingOrError">
+        <ng-container *ngIf="searchText.trim() === '' && suggestedItems.length > 0; else searchResultsList">
+          <div class="suggested-header">Suggested Fruits</div>
+          <div
+            class="option"
+            *ngFor="let item of suggestedItems; let i = index"
+            [class.selected]="isSelected(item)"
+            [class.focused]="i === focusedIndex"
+            [class.disabled]="item.disabled"
+            (click)="selectItem(item)"
+            role="option"
+            [attr.aria-selected]="isSelected(item)"
+            tabindex="-1"
+          >
+            {{ item.label }}
+          </div>
+        </ng-container>
+
+        <ng-template #searchResultsList>
+          <div
+            class="option"
+            *ngFor="let item of items; let i = index"
+            [class.selected]="isSelected(item)"
+            [class.focused]="i === focusedIndex"
+            [class.disabled]="item.disabled"
+            (click)="selectItem(item)"
+            role="option"
+            [attr.aria-selected]="isSelected(item)"
+            tabindex="-1"
+          >
+            {{ item.label }}
+          </div>
+          <div class="empty-state" *ngIf="items.length === 0 && searchTerm()">No options found.</div>
+
+          <div *ngIf="loadingMore" class="spinner small"></div>
+        </ng-template>
+      </ng-container>
+
+      <ng-template #loadingOrError>
+        <div class="dropdown-message" *ngIf="loading" role="status" aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
+          <span class="sr-only">Loading options...</span>
+        </div>
+        <div class="dropdown-message error" *ngIf="error">❌ {{ error }}</div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

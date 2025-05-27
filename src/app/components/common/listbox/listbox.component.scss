@@ -1,0 +1,138 @@
+.select-list {
+  position: relative;
+  width: 250px;
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.select-control {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 37px;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 0.5rem;
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+.clear-button:hover {
+  color: #222;
+}
+
+.placeholder {
+  color: #aaa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-panel {
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  margin-top: 2px;
+  z-index: 1000;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.search-input {
+  width: calc(100% - 1rem);
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border: none;
+  border: 1px solid #ccc;
+  margin: 0.5rem;
+  border-radius: 4px;
+}
+
+.option {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+
+  &.selected {
+    background-color: #3498db;
+    color: white;
+
+    &:hover {
+      background-color: #2583c2;
+    }
+  }
+
+  &.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+  }
+
+  &:not(.disabled, .selected):hover {
+    background-color: #ccc;
+  }
+}
+
+.empty-state,
+.dropdown-message {
+  padding: 0.75rem;
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
+
+.dropdown-message.error {
+  color: #d33;
+}
+
+.spinner {
+  margin: 10px auto;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.option.focused {
+  background-color: #e2f4ff;
+
+  &.selected {
+    background-color: #3498db;
+    color: white;
+  }
+}
+
+.suggested-header {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-block: 1px solid #ddd;
+  background-color: #f9f9f9;
+  font-size: 12px;
+}

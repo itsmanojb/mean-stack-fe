@@ -5,8 +5,21 @@
       Add Project
     </button>
     <div class="controls">
+      <app-listbox
+        [items]="filteredFruits"
+        [initialSelected]="favFruits"
+        [suggestedItems]="defaultFruits"
+        [multi]="true"
+        [loading]="loadingFruits"
+        [loadingMore]="isLoadingMore"
+        [totalCount]="totalCount"
+        [error]="fruitsError"
+        placeholder="Choose favorite fruits"
+        (selectionChange)="onListItemSelect($event)"
+        (searchChange)="onSearch($event)"
+      ></app-listbox>
       <div class="dd">
-        <app-select-dropdown
+        <app-select-input
           [items]="myItems"
           [preselected]="[
             {
@@ -19,7 +32,7 @@
           [filterKey]="'name'"
           [hideDisabled]="false"
           (valueChange)="onValueChange($event)"
-        ></app-select-dropdown>
+        ></app-select-input>
       </div>
       <button type="button" [class.active]="viewAs === 'grid'" (click)="viewAs = 'grid'">Grid</button>
       <button type="button" [class.active]="viewAs === 'list'" (click)="viewAs = 'list'">List</button>

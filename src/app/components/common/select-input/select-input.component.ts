@@ -29,10 +29,10 @@ export interface GroupedItem {
 }
 
 @Component({
-  selector: 'app-select-dropdown',
+  selector: 'app-select-input',
   imports: [FormsModule, OverlayModule, PortalModule],
-  templateUrl: './select-dropdown.component.html',
-  styleUrls: ['./select-dropdown.component.scss'],
+  templateUrl: './select-input.component.html',
+  styleUrls: ['./select-input.component.scss'],
   animations: [
     trigger('dropdownAnimation', [
       transition(':enter', [
@@ -43,7 +43,7 @@ export interface GroupedItem {
     ]),
   ],
 })
-export class SelectDropdownComponent {
+export class SelectComponent {
   @Input() placeholder = 'Select';
   @Input() showClearButton = false;
   @Input() filterKey = '';

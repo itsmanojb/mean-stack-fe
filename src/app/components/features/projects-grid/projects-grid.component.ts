@@ -4,11 +4,11 @@ import { Project } from '@interfaces/project.interface';
 import { AvatarsGroupComponent } from '@components/features/avatars-group/avatars-group.component';
 import { staggerAnimation } from '@utils/misc/animations';
 import { ConfirmDialogService } from '@shared/confirm-dialog/confirm-dialog.service';
-import { DropdownMenuComponent } from '@components/common/dropdown-menu/dropdown-menu.component';
+import { MenuButtonComponent } from '@components/common/menu-button/menu-button.component';
 
 @Component({
   selector: 'app-projects-grid',
-  imports: [RouterLink, AvatarsGroupComponent, DropdownMenuComponent],
+  imports: [RouterLink, AvatarsGroupComponent, MenuButtonComponent],
   templateUrl: './projects-grid.component.html',
   styleUrl: './projects-grid.component.scss',
   animations: [staggerAnimation],

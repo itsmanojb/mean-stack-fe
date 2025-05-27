@@ -33,14 +33,14 @@
               {{ item.industry.slice(0, 2).toUpperCase() }}
             </div>
             <div class="actions">
-              <app-dropdown-menu
+              <app-menu-button
                 [options]="options"
                 [displayKey]="'name'"
                 [position]="'left'"
                 (optionSelected)="onOptionSelected($event)"
               >
                 <span style="font-weight: bold">⋮</span>
-              </app-dropdown-menu>
+              </app-menu-button>
             </div>
           </div>
         </div>

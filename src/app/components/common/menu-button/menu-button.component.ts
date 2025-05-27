@@ -12,12 +12,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-dropdown-menu',
+  selector: 'app-menu-button',
   imports: [],
-  templateUrl: './dropdown-menu.component.html',
-  styleUrl: './dropdown-menu.component.scss',
+  templateUrl: './menu-button.component.html',
+  styleUrl: './menu-button.component.scss',
 })
-export class DropdownMenuComponent {
+export class MenuButtonComponent {
   @Input() options: any[] = [];
   @Input() displayKey: string = '';
   @Input() position: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
