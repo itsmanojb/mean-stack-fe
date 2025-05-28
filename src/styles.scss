@@ -10,10 +10,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #0762c4;
   --item-hover-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --item-hover-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+:root {
+  --primary-color: #0762c4;
+  --accent-color: #cd7d0a;
+}
+
+// [data-theme="dark"] {}
 
 *,
 *:before,

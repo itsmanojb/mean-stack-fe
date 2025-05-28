@@ -4,11 +4,12 @@ import { Project } from '@interfaces/project.interface';
 import { ProjectsGridComponent } from '@components/features/projects-grid/projects-grid.component';
 import { ProjectsListComponent } from '@components/features/projects-list/projects-list.component';
 import { ProjectFormComponent } from '@components/features/project-form/project-form.component';
-import { CommonModalService } from '@app/shared/common-modal/common-modal.service';
+import { SelectComponent, SelectItem } from '@components/common/select-input/select-input.component';
+import { ListboxComponent } from '@components/common/listbox/listbox.component';
+import { ButtonComponent } from '@components/common/button/button.component';
+import { CommonModalService } from '@shared/common-modal/common-modal.service';
 import { ToastService } from '@shared/toast/toast.service';
 import { TooltipDirective } from '@shared/tooltip/tooltip.directive';
-import { SelectComponent, SelectItem } from '@app/components/common/select-input/select-input.component';
-import { ListboxComponent } from '@components/common/listbox/listbox.component';
 import { DummyDataService } from '@app/data/dummy-data.service';
 
 @Component({
@@ -20,6 +21,7 @@ import { DummyDataService } from '@app/data/dummy-data.service';
     TooltipDirective,
     SelectComponent,
     ListboxComponent,
+    ButtonComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

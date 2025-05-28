@@ -1,0 +1,25 @@
+import { NgClass, NgIf } from '@angular/common';
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-button',
+  imports: [NgClass, NgIf],
+  templateUrl: './button.component.html',
+  styleUrl: './button.component.scss',
+})
+export class ButtonComponent {
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
+
+  @Input() variant?: 'primary' | 'accent' | 'outline' | 'ghost';
+  @Input() size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  @Input() rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full' | 'left' | 'right';
+
+  @Input() loadingText?: string;
+  @Input() ariaLabel?: string;
+  @Input() fullWidth = false;
+  @Input() disabled = false;
+  @Input() loading = false;
+  @Input() showArrow = false;
+  @Input() animateArrow = true;
+  @Input() arrowPosition: 'left' | 'right' = 'left';
+}
