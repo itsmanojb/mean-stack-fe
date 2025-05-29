@@ -1,0 +1,9 @@
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &.vertical {
+    flex-direction: column;
+  }
+}

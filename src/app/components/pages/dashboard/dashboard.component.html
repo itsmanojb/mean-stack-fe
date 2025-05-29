@@ -42,6 +42,20 @@
       <button type="button" [class.active]="viewAs === 'list'" (click)="viewAs = 'list'">List</button>
     </div>
   </div>
+  <div class="toolbar">
+    <div>
+      <app-checkbox [(ngModel)]="checked" [required]="true" label="I agree to the terms"></app-checkbox>
+    </div>
+    <div>
+      <app-radio-group
+        [(ngModel)]="selectedRadio"
+        [options]="radioItems"
+        valueKey="id"
+        labelKey="name"
+        disabledKey="disabled"
+      ></app-radio-group>
+    </div>
+  </div>
   <section>
     @switch (viewAs) {
       @case ("grid") {

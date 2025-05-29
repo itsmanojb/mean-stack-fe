@@ -1,0 +1,23 @@
+<input
+  type="radio"
+  [id]="id"
+  class="radio-input"
+  [checked]="isChecked"
+  [disabled]="disabled"
+  (change)="onSelect()"
+  [attr.aria-checked]="isChecked"
+/>
+
+<label
+  [attr.for]="id"
+  class="radio-wrapper"
+  [class.disabled]="disabled"
+  [class.checkmark-only]="checkmarkOnly"
+  [class.circle]="shape === 'circle'"
+  [class.checkmark-only-mode]="checkmarkOnly"
+>
+  <div class="radio" [class.checked]="isChecked">
+    <div class="dot" [class.show]="isChecked"></div>
+  </div>
+  <span class="label" *ngIf="label">{{ label }}</span>
+</label>

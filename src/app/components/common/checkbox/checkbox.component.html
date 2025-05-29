@@ -1,0 +1,24 @@
+<label
+  class="checkbox-wrapper"
+  [class.disabled]="disabled"
+  [class.circle]="shape === 'circle'"
+  [class.checkmark-only-mode]="checkmarkOnly"
+  tabindex="0"
+  role="checkbox"
+  [attr.aria-checked]="indeterminate ? 'mixed' : checked"
+  [attr.aria-disabled]="disabled"
+  (click)="toggle()"
+  (keydown.space)="toggle()"
+  (keydown.enter)="toggle()"
+>
+  <div class="checkbox" [class.checked]="checked && !indeterminate">
+    <svg class="check-icon" [class.show]="checked && !indeterminate" viewBox="0 0 24 24">
+      <path d="M5 13l4 4L19 7" stroke-width="2" fill="none" />
+    </svg>
+
+    <div class="indeterminate-bar" *ngIf="!checkmarkOnly" [class.show]="indeterminate && !checked"></div>
+  </div>
+
+  <!-- Only show label text if enabled -->
+  <span class="label" *ngIf="label">{{ label }}</span>
+</label>

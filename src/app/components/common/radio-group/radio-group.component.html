@@ -1,0 +1,15 @@
+<div class="radio-group" [class.vertical]="layout === 'vertical'">
+  @for (opt of options; track $index; let i = $index) {
+    <app-radio
+      [value]="getValue(opt)"
+      [selectedValue]="selectedValue"
+      [label]="getLabel(opt)"
+      [disabled]="disabled || isOptionDisabled(opt)"
+      [shape]="shape"
+      [checkmarkOnly]="checkmarkOnly"
+      [checkmarkOnlyMode]="checkmarkOnlyMode"
+      (valueChange)="onValueChange($event)"
+      [id]="'radio-' + i"
+    ></app-radio>
+  }
+</div>

@@ -1,0 +1,116 @@
+.checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #888;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    position: relative;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+    border-radius: 4px;
+
+    &.circle {
+      border-radius: 50%;
+    }
+
+    &:focus-visible {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(0, 95, 204, 0.3);
+    }
+
+    &:hover {
+      border-color: #555;
+    }
+
+    .check-icon,
+    .indeterminate-bar {
+      position: absolute;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    .check-icon.show,
+    .indeterminate-bar.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      stroke: white;
+    }
+
+    .indeterminate-bar {
+      width: 10px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+
+    &.checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+  }
+
+  &.checkmark-only-mode {
+    .checkbox {
+      background: transparent;
+      border: none;
+
+      .check-icon {
+        width: 22px;
+        height: 22px;
+        stroke: var(--primary-color);
+        stroke-dasharray: 24;
+        stroke-dashoffset: 24;
+        opacity: 0;
+        transform: scale(0.8);
+        transition:
+          stroke-dashoffset 0.3s ease,
+          opacity 0.2s ease,
+          transform 0.2s ease;
+
+        &.show {
+          stroke-dashoffset: 0;
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+
+    &.checked {
+      background: transparent;
+    }
+
+    &:focus-visible {
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}

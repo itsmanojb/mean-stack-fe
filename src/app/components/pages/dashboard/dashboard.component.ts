@@ -11,17 +11,23 @@ import { CommonModalService } from '@shared/common-modal/common-modal.service';
 import { ToastService } from '@shared/toast/toast.service';
 import { TooltipDirective } from '@shared/tooltip/tooltip.directive';
 import { DummyDataService } from '@app/data/dummy-data.service';
+import { CheckboxComponent } from '@components/common/checkbox/checkbox.component';
+import { FormsModule } from '@angular/forms';
+import { RadioGroupComponent } from '@app/components/common/radio-group/radio-group.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     CommonModule,
+    FormsModule,
     ProjectsGridComponent,
     ProjectsListComponent,
     TooltipDirective,
     SelectComponent,
     ListboxComponent,
     ButtonComponent,
+    CheckboxComponent,
+    RadioGroupComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -154,4 +160,12 @@ export class DashboardComponent {
   onListItemSelect(e: any) {
     console.log('Selected from listbox', e);
   }
+
+  checked = false;
+  selectedRadio = 2;
+  radioItems = [
+    { id: 1, name: 'Option A' },
+    { id: 2, name: 'Option B' },
+    { id: 3, name: 'Option C' },
+  ];
 }
