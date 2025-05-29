@@ -1,12 +1,13 @@
 <button
+  class="btn"
   [attr.type]="type"
   [disabled]="disabled || loading"
   [attr.aria-disabled]="disabled || loading ? 'true' : null"
   [attr.aria-busy]="loading ? 'true' : null"
   [attr.aria-label]="ariaLabel"
-  class="app-btn"
   [ngClass]="[
-    variant || 'primary',
+    variant || 'solid',
+    color || 'default',
     size || 'md',
     disabled || loading ? 'disabled' : '',
     'rounded-' + (rounded || 'none'),

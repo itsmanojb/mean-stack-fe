@@ -7,6 +7,5 @@ import { ToastComponent } from '@shared/toast/toast.component';
   selector: 'app-root',
   imports: [CommonModule, RouterOutlet, ToastComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {}

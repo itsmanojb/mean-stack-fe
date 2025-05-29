@@ -1,0 +1,47 @@
+:root {
+  /* Color HSL base values */
+
+  --hue-primary: 220;
+  --sat-primary: 90%;
+  --lum-primary: 60%;
+
+  --color-primary: hsl(var(--hue-primary), var(--sat-primary), var(--lum-primary));
+  --color-primary-dark: color-mix(in srgb, var(--color-primary), black 10%);
+  --color-primary-darker: color-mix(in srgb, var(--color-primary), black 20%);
+  --color-primary-light: color-mix(in srgb, var(--color-primary), white 10%);
+  --color-primary-lighter: color-mix(in srgb, var(--color-primary), white 20%);
+
+  --hue-secondary: 30;
+  --sat-secondary: 100%;
+  --lum-secondary: 50%;
+
+  --color-secondary: hsl(var(--hue-secondary), var(--sat-secondary), var(--lum-secondary));
+  --color-secondary-dark: color-mix(in srgb, var(--color-secondary), black 10%);
+  --color-secondary-darker: color-mix(in srgb, var(--color-secondary), black 20%);
+  --color-secondary-light: color-mix(in srgb, var(--color-secondary), white 10%);
+  --color-secondary-lighter: color-mix(in srgb, var(--color-secondary), white 20%);
+
+  --color-white: #fff;
+  --color-white-5: color-mix(in srgb, var(--color-white), black 5%);
+  --color-white-10: color-mix(in srgb, var(--color-white), black 10%);
+  --color-white-15: color-mix(in srgb, var(--color-white), black 15%);
+  --color-white-20: color-mix(in srgb, var(--color-white), black 20%);
+  --color-white-25: color-mix(in srgb, var(--color-white), black 25%);
+  --color-white-30: color-mix(in srgb, var(--color-white), black 30%);
+  --color-white-35: color-mix(in srgb, var(--color-white), black 35%);
+  --color-white-40: color-mix(in srgb, var(--color-white), black 40%);
+  --color-white-45: color-mix(in srgb, var(--color-white), black 45%);
+  --color-white-50: color-mix(in srgb, var(--color-white), black 50%);
+
+  --color-black: #000;
+  --color-black-5: color-mix(in srgb, var(--color-black), white 5%);
+  --color-black-10: color-mix(in srgb, var(--color-black), white 10%);
+  --color-black-15: color-mix(in srgb, var(--color-black), white 15%);
+  --color-black-20: color-mix(in srgb, var(--color-black), white 20%);
+  --color-black-25: color-mix(in srgb, var(--color-black), white 25%);
+  --color-black-30: color-mix(in srgb, var(--color-black), white 30%);
+  --color-black-35: color-mix(in srgb, var(--color-black), white 35%);
+  --color-black-40: color-mix(in srgb, var(--color-black), white 40%);
+  --color-black-45: color-mix(in srgb, var(--color-black), white 45%);
+  --color-black-50: color-mix(in srgb, var(--color-black), white 50%);
+}

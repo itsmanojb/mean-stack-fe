@@ -1,0 +1,66 @@
+button.btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid;
+  color: var(--text-color);
+  line-height: 1;
+
+  &:focus-within {
+    outline: 2px solid var(--main-color);
+    outline-offset: 1px;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* varients */
+
+  &.solid {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    color: var(--text-color);
+
+    &:hover {
+      --main-color: var(--main-color-focused);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    border-color: var(--main-color);
+    color: var(--main-color);
+  }
+
+  &.ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--main-color);
+  }
+
+  /* colors */
+
+  &.primary {
+    --main-color: var(--color-primary);
+    --main-color-focused: var(--color-primary-dark);
+  }
+
+  &.secondary {
+    --main-color: var(--color-secondary);
+    --main-color-focused: var(--color-secondary-dark);
+  }
+
+  &.default {
+    --main-color: light-dark(var(--color-black-10), var(--color-white-50));
+    --main-color-focused: light-dark(var(--color-black-20), var(--color-white-40));
+  }
+}

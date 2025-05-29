@@ -1,10 +1,5 @@
 import { Routes } from '@angular/router';
-import {
-  LoginComponent,
-  DashboardComponent,
-  ProjectHomeComponent,
-  PageNotFoundComponent,
-} from '@pages/index';
+import { LoginComponent, DashboardComponent, ProjectHomeComponent, PageNotFoundComponent } from '@app/pages/index';
 import { sessionGuard, authenticationGuard } from '@utils/guards';
 
 export const routes: Routes = [
@@ -34,17 +29,17 @@ export const routes: Routes = [
         path: 'overview',
         title: 'Project Overview',
         loadComponent: () =>
-          import(
-            '@components/pages/projects/project-overview/project-overview.component'
-          ).then((c) => c.ProjectOverviewComponent),
+          import('@app/pages/projects/project-overview/project-overview.component').then(
+            (c) => c.ProjectOverviewComponent,
+          ),
       },
       {
         path: 'analytics',
         title: 'Project Analytics',
         loadComponent: () =>
-          import(
-            '@components/pages/projects/project-analytics/project-analytics.component'
-          ).then((c) => c.ProjectAnalyticsComponent),
+          import('@app/pages/projects/project-analytics/project-analytics.component').then(
+            (c) => c.ProjectAnalyticsComponent,
+          ),
       },
       { path: '**', redirectTo: 'overview', pathMatch: 'full' },
     ],

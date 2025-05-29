@@ -6,12 +6,11 @@
 }
 
 .project-card {
-  --card-bg: #fff;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  background-color: var(--card-bg);
-  border: 1px solid #ddd;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 8px;
   padding: 16px;
   transition: transform 0.2s;

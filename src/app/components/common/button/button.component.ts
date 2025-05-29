@@ -10,7 +10,8 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
 
-  @Input() variant?: 'primary' | 'accent' | 'outline' | 'ghost';
+  @Input() variant?: 'solid' | 'outline' | 'ghost';
+  @Input() color?: 'primary' | 'secondary' | 'default';
   @Input() size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   @Input() rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full' | 'left' | 'right';
   @Input() loadingText?: string;

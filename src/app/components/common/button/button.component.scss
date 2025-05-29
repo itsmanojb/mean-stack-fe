@@ -2,68 +2,9 @@
   display: inline-flex;
 }
 
-.app-btn {
-  --btn-surface-color: #fff;
-  --btn-border-color: #999;
-  --btn-text-color: #555;
-
+.btn {
   padding: 0.5rem 1rem;
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--btn-surface-color);
-  border: 2px solid var(--btn-border-color);
-  color: var(--btn-text-color);
-  line-height: 1;
-
-  &:focus-within {
-    outline: 2px solid var(--btn-border-color);
-    outline-offset: 1px;
-  }
-
-  &:hover:not(.disabled) {
-    --darken-color: color-mix(in srgb, var(--btn-surface-color) 85%, black);
-    background-color: var(--darken-color);
-    border-color: var(--darken-color);
-  }
-
-  &:active:not(.disabled) {
-    transform: scale(0.97);
-  }
-
-  &.disabled,
-  &:disabled {
-    opacity: 0.6;
-    pointer-events: none;
-    cursor: not-allowed;
-  }
-
-  /* colors */
-
-  &.primary {
-    --btn-surface-color: var(--primary-color);
-    --btn-border-color: var(--primary-color);
-    --btn-text-color: #fff;
-  }
-
-  &.accent {
-    --btn-surface-color: var(--accent-color);
-    --btn-border-color: var(--accent-color);
-    --btn-text-color: #fff;
-  }
-
-  &.outline {
-    --btn-surface-color: transparent;
-  }
-
-  &.ghost {
-    --btn-surface-color: transparent;
-    --btn-border-color: transparent;
-    --btn-text-color: var(--primary-color);
-  }
 
   ::ng-deep [icon-left],
   ::ng-deep [icon-right] {
