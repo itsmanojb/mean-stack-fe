@@ -1,0 +1,21 @@
+<div class="auto-grow-container">
+  <textarea
+    #textarea
+    [(ngModel)]="value"
+    (input)="onInput($event)"
+    [attr.placeholder]="placeholder"
+    [attr.rows]="rows"
+    [attr.maxLength]="maxLength"
+    [required]="required ? 'required' : false"
+    [minlength]="minLength"
+    [maxlength]="maxLength"
+    [disabled]="disabled"
+    class="auto-grow-textarea"
+  ></textarea>
+  <div class="info-bar" *ngIf="showCounter || showErrors">
+    <span *ngIf="showCounter && maxLength" class="char-counter"> {{ value.length }}/{{ maxLength }} </span>
+    <span *ngIf="showErrors && validationError" class="error-msg">
+      {{ validationError }}
+    </span>
+  </div>
+</div>

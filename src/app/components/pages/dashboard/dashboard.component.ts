@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { Project } from '@interfaces/project.interface';
 import { ProjectsGridComponent } from '@components/features/projects-grid/projects-grid.component';
 import { ProjectsListComponent } from '@components/features/projects-list/projects-list.component';
@@ -12,14 +14,15 @@ import { ToastService } from '@shared/toast/toast.service';
 import { TooltipDirective } from '@shared/tooltip/tooltip.directive';
 import { DummyDataService } from '@app/data/dummy-data.service';
 import { CheckboxComponent } from '@components/common/checkbox/checkbox.component';
-import { FormsModule } from '@angular/forms';
-import { RadioGroupComponent } from '@app/components/common/radio-group/radio-group.component';
+import { RadioGroupComponent } from '@components/common/radio-group/radio-group.component';
+import { TextareaComponent } from '@components/common/textarea/textarea.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ProjectsGridComponent,
     ProjectsListComponent,
     TooltipDirective,
@@ -28,6 +31,7 @@ import { RadioGroupComponent } from '@app/components/common/radio-group/radio-gr
     ButtonComponent,
     CheckboxComponent,
     RadioGroupComponent,
+    TextareaComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -61,16 +65,16 @@ export class DashboardComponent {
 
   loadData() {
     this.loading.set(true);
-    this.data.getProjects().subscribe(
-      (results) => {
+    this.data.getProjects().subscribe({
+      next: (results) => {
         this.items.set(results);
         this.loading.set(false);
       },
-      (err) => {
+      error: (err) => {
         this.toast.error(err.message || 'An error occurred.');
         this.loading.set(false);
       },
-    );
+    });
   }
 
   openProjectModal() {
@@ -161,11 +165,24 @@ export class DashboardComponent {
     console.log('Selected from listbox', e);
   }
 
-  checked = false;
-  selectedRadio = 2;
-  radioItems = [
-    { id: 1, name: 'Option A' },
-    { id: 2, name: 'Option B' },
-    { id: 3, name: 'Option C' },
+  options = [
+    { id: 1, label: 'One' },
+    { id: 2, label: 'Two' },
+    { id: 3, label: 'Three' },
   ];
+
+  form = new FormGroup({
+    checked: new FormControl(false, [Validators.required]),
+    choice: new FormControl(2, [Validators.required]),
+    message: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
+  });
+
+  onTextChange(value: string) {
+    console.log('Textarea changed:', value);
+  }
+
+  onSubmit(e: any) {
+    e.preventDefault();
+    console.log('Submitted values', this.form.value);
+  }
 }
