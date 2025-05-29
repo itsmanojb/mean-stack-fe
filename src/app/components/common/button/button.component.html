@@ -10,41 +10,12 @@
     size || 'md',
     disabled || loading ? 'disabled' : '',
     'rounded-' + (rounded || 'none'),
-    fullWidth ? 'expandable' : '',
-    showArrow && animateArrow ? 'animate-arrow' : '',
+    iconOnly ? 'icon-only' : fullWidth ? 'expandable' : '',
   ]"
 >
   <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
 
-  <!-- Arrow Left -->
-  <svg
-    *ngIf="showArrow && arrowPosition === 'left' && !loading"
-    class="arrow-icon left"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M7.707 4.293a1 1 0 010 1.414L4.414 9H16a1 1 0 110 2H4.414l3.293 3.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
-      clip-rule="evenodd"
-    />
-  </svg>
-
-  <ng-content *ngIf="!loading"></ng-content>
-
-  <!-- Arrow Right -->
-  <svg
-    *ngIf="showArrow && arrowPosition === 'right' && !loading"
-    class="arrow-icon right"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M12.293 15.707a1 1 0 010-1.414L15.586 11H4a1 1 0 110-2h11.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-      clip-rule="evenodd"
-    />
-  </svg>
+  <ng-content *ngIf="!loading" select="[icon-left]"></ng-content>
+  <ng-content *ngIf="!loading && !iconOnly"></ng-content>
+  <ng-content *ngIf="!loading" select="[icon-right]"></ng-content>
 </button>

@@ -13,13 +13,10 @@ export class ButtonComponent {
   @Input() variant?: 'primary' | 'accent' | 'outline' | 'ghost';
   @Input() size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   @Input() rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full' | 'left' | 'right';
-
   @Input() loadingText?: string;
   @Input() ariaLabel?: string;
   @Input() fullWidth = false;
   @Input() disabled = false;
   @Input() loading = false;
-  @Input() showArrow = false;
-  @Input() animateArrow = true;
-  @Input() arrowPosition: 'left' | 'right' = 'left';
+  @Input() iconOnly = false;
 }
