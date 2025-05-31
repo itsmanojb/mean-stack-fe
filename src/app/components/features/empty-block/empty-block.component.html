@@ -1,0 +1,27 @@
+<section class="empty-block">
+  <div class="wrapper">
+    @if (withIcon) {
+      <ng-content select="[icon]">
+        <div class="icon"></div>
+      </ng-content>
+    }
+    <div class="title">{{ title }}</div>
+    @if (description) {
+      <div class="description">{{ description }}</div>
+    }
+    @if (ctaText) {
+      <div class="actions">
+        <app-button
+          type="button"
+          rounded="md"
+          color="primary"
+          appTooltip="Click to add Project!"
+          tooltipPosition="bottom"
+          (click)="ctaButtonClicked()"
+        >
+          {{ ctaText }}
+        </app-button>
+      </div>
+    }
+  </div>
+</section>

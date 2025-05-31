@@ -1,25 +1,51 @@
-<div class="container">
-  <h2>Projects</h2>
-  <div class="toolbar">
-    <div class="buttons">
-      <button type="button" appTooltip="Click to add Project!" tooltipPosition="bottom" (click)="openProjectModal()">
-        Add Project
-      </button>
+<div class="container fluid">
+  <div class="header-banner">
+    <div>
+      <h1 class="title">Dashboard</h1>
+      <p class="subtitle">Welcome to your dashboard!</p>
     </div>
+    <app-button
+      type="button"
+      rounded="md"
+      color="primary"
+      appTooltip="Click to add Project!"
+      tooltipPosition="bottom"
+      (click)="openProjectModal()"
+    >
+      Add Project
+    </app-button>
+  </div>
+  <div class="toolbar">
+    <h2>Projects</h2>
     <div class="controls">
-      <app-listbox
-        [items]="filteredFruits"
-        [initialSelected]="favFruits"
-        [suggestedItems]="defaultFruits"
-        [multi]="true"
-        [loading]="loadingFruits"
-        [loadingMore]="isLoadingMore"
-        [totalCount]="totalCount"
-        [error]="fruitsError"
-        placeholder="Choose favorite fruits"
-        (selectionChange)="onListItemSelect($event)"
-        (searchChange)="onSearch($event)"
-      ></app-listbox>
+      @if (items().length > 0) {
+        <div class="btn-group flex">
+          <app-button type="button" [activated]="viewAs === 'grid'" (click)="viewAs = 'grid'" rounded="left">
+            Grid
+          </app-button>
+          <app-button type="button" [activated]="viewAs === 'list'" (click)="viewAs = 'list'" rounded="right">
+            List
+          </app-button>
+        </div>
+      }
+    </div>
+  </div>
+  <!--  <div>
+          <div>
+        <app-combobox
+          [items]="filteredFruits"
+          [initialSelected]="favFruits"
+          [suggestedItems]="defaultFruits"
+          [multi]="true"
+          [loading]="loadingFruits"
+          [loadingMore]="isLoadingMore"
+          [totalCount]="totalCount"
+          [error]="fruitsError"
+          placeholder="Choose favorite fruits"
+          (selectionChange)="onListItemSelect($event)"
+          (searchChange)="onSearch($event)"
+        ></app-combobox>
+      </div>
       <div class="dd">
         <app-select-input
           [items]="myItems"
@@ -36,11 +62,6 @@
           (valueChange)="onValueChange($event)"
         ></app-select-input>
       </div>
-      <button type="button" [class.active]="viewAs === 'grid'" (click)="viewAs = 'grid'">Grid</button>
-      <button type="button" [class.active]="viewAs === 'list'" (click)="viewAs = 'list'">List</button>
-    </div>
-  </div>
-  <div>
     <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
       <div>
         <app-checkbox formControlName="checked" label="I agree to the terms"></app-checkbox>
@@ -75,7 +96,7 @@
         </app-button>
       </div>
     </form>
-  </div>
+  </div> -->
   <section>
     @switch (viewAs) {
       @case ("grid") {

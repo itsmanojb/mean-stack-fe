@@ -56,7 +56,7 @@
     <ng-template #defaultListView>
       <input
         type="text"
-        class="search-input"
+        class="dropdown-search-input"
         placeholder="Search..."
         [value]="searchText"
         (input)="onSearchInput($any($event.target).value)"
@@ -65,7 +65,7 @@
         aria-label="Search options"
       />
 
-      <ng-container *ngIf="!loading && !error; else loadingOrError">
+      <div class="options-wrapper" *ngIf="!loading && !error; else loadingOrError">
         <ng-container *ngIf="searchText.trim() === '' && suggestedItems.length > 0; else searchResultsList">
           <div class="suggested-header">Suggested Fruits</div>
           <div
@@ -101,7 +101,7 @@
 
           <div *ngIf="loadingMore" class="spinner small"></div>
         </ng-template>
-      </ng-container>
+      </div>
 
       <ng-template #loadingOrError>
         <div class="dropdown-message" *ngIf="loading" role="status" aria-live="polite">

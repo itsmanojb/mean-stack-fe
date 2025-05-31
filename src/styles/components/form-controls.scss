@@ -1,0 +1,22 @@
+:root {
+  --select-trigger-height: 44px;
+  --input-inline-padding: 0.5rem;
+}
+
+textarea {
+  background-color: var(--input-bg-color);
+  border-color: var(--input-border-color);
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease-in-out;
+  color: var(--input-text-color);
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 0 1px var(--input-focus-color);
+  }
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+}

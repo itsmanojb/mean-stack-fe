@@ -59,16 +59,17 @@
 }
 
 .toast.success {
-  background: #4caf50;
+  background: var(--color-green);
 }
 .toast.error {
-  background: #f44336;
+  background: var(--color-red);
 }
 .toast.info {
-  background: #2196f3;
+  background: var(--color-primary);
 }
+
 .toast.warning {
-  background: #ff9800;
+  background: var(--color-orange);
 }
 
 .toast .progress {

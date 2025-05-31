@@ -73,44 +73,6 @@
     font-size: 1.2rem;
     --radius: 0.75rem;
   }
-
-  /* corner radius */
-  &.rounded-none {
-    --radius: 0;
-    border-radius: var(--radius);
-  }
-
-  &.rounded-sm {
-    border-radius: var(--radius);
-  }
-
-  &.rounded-md {
-    border-radius: var(--radius);
-  }
-
-  &.rounded-lg {
-    border-radius: var(--radius);
-  }
-
-  &.rounded-left {
-    border-radius: var(--radius) 0 0 var(--radius);
-  }
-
-  &.rounded-right {
-    border-radius: 0 var(--radius) var(--radius) 0;
-  }
-
-  &.rounded-top {
-    border-radius: var(--radius) var(--radius) 0 0;
-  }
-
-  &.rounded-bottom {
-    border-radius: 0 0 var(--radius) var(--radius);
-  }
-
-  &.rounded-full {
-    border-radius: 9999px;
-  }
 }
 
 .spinner {

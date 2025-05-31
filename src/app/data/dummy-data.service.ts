@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, switchMap } from 'rxjs/operators';
-import { SelectItem, SearchResult } from '@components/common/listbox/listbox.component'; // adjust path as needed
+import { SelectItem, SearchResult } from '@app/components/common/combobox/combobox.component'; // adjust path as needed
 import { formatCurrency } from '@utils/misc/helper';
 import { Project } from '@shared/interfaces/project.interface';
 

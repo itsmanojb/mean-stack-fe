@@ -1,3 +1,12 @@
+.container {
+  padding-inline: var(--space-sm);
+  margin-inline: auto;
+
+  &:not(.fluid) {
+    max-width: var(--container-xl);
+  }
+}
+
 .skeleton {
   width: 100%;
   height: 16px;
@@ -25,5 +34,29 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+.dropdown-search-input {
+  width: calc(100% - 1rem);
+  height: 38px;
+  box-sizing: border-box;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border: 1px solid var(--input-border-color);
+  margin: 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--input-text-color);
+  font-size: 0.9rem;
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 0 1px var(--input-focus-color);
+  }
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
   }
 }

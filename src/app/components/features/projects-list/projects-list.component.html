@@ -27,10 +27,26 @@
         <div>
           <app-avatars-group [items]="item.users" [aligned]="'end'"></app-avatars-group>
         </div>
-        <div class="actions"><button type="button">...</button></div>
+        <div class="actions">
+          <app-menu-button
+            [options]="options"
+            [displayKey]="'name'"
+            [position]="'left'"
+            (optionSelected)="onOptionSelected($event)"
+          >
+            <span style="font-weight: bold">⋮</span>
+          </app-menu-button>
+        </div>
       </div>
     } @empty {
-      <p>No projects found.</p>
+      <div class="no-projects">
+        <app-empty-block
+          title="No Projects Found"
+          description="You need to create your project to see here."
+          ctaText="Add Project"
+        >
+        </app-empty-block>
+      </div>
     }
   </div>
 }

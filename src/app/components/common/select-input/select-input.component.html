@@ -17,7 +17,7 @@
             placeholder="Search..."
             [(ngModel)]="searchText"
             (ngModelChange)="searchText.set($event)"
-            class="search-box"
+            class="dropdown-search-input"
           />
 
           @if (normalizedPreselected.length) {
@@ -115,7 +115,7 @@
 <div #origin="cdkOverlayOrigin" cdkOverlayOrigin></div>
 
 <div class="select-trigger">
-  <div class="value-text" (click)="toggleDropdown()" #triggerButton>
+  <div class="value-text" [class.placeholder]="selectedItems().length === 0" (click)="toggleDropdown()" #triggerButton>
     {{ displayText() }}
   </div>
 

@@ -26,14 +26,14 @@ export interface SearchResult {
 }
 
 @Component({
-  selector: 'app-listbox',
+  selector: 'app-combobox',
   imports: [CommonModule, FormsModule],
-  templateUrl: './listbox.component.html',
-  styleUrl: './listbox.component.scss',
+  templateUrl: './combobox.component.html',
+  styleUrl: './combobox.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ListboxComponent),
+      useExisting: forwardRef(() => ComboboxComponent),
       multi: true,
     },
   ],
@@ -47,7 +47,7 @@ export interface SearchResult {
     ]),
   ],
 })
-export class ListboxComponent implements ControlValueAccessor, OnChanges {
+export class ComboboxComponent implements ControlValueAccessor, OnChanges {
   @Input() items: SelectItem[] = [];
   @Input() totalCount: number = 0;
   @Input() multi = false;

@@ -18,6 +18,7 @@ export class ButtonComponent {
   @Input() ariaLabel?: string;
   @Input() fullWidth = false;
   @Input() disabled = false;
+  @Input() activated = false;
   @Input() loading = false;
   @Input() iconOnly = false;
 }

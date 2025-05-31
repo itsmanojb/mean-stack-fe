@@ -14,8 +14,8 @@
   .checkbox {
     width: 20px;
     height: 20px;
-    border: 2px solid #888;
-    background-color: white;
+    border: 2px solid var(--input-border-color);
+    background-color: var(--appbg-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,11 +28,6 @@
 
     &.circle {
       border-radius: 50%;
-    }
-
-    &:focus-visible {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 2px rgba(0, 95, 204, 0.3);
     }
 
     &:hover {
@@ -69,8 +64,7 @@
     }
 
     &.checked {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
+      background-color: var(--color-primary);
     }
   }
 
@@ -112,5 +106,14 @@
 
   .label {
     font-size: 14px;
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    .checkbox {
+      border-color: var(--input-focus-color);
+      // box-shadow: 0 0 0 2px var(--input-focus-color);
+    }
   }
 }

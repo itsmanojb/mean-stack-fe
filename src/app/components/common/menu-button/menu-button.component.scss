@@ -7,32 +7,47 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 2px 4px;
   font-size: 16px;
+  border-radius: var(--radius-sm);
+  color: var(--app-fg-color-muted);
+
+  &:focus-visible {
+    outline: 2px solid var(--input-focus-color);
+    outline-offset: 2px;
+  }
 }
 
-/* .menu {
+.menu {
   position: absolute;
   min-width: 150px;
-  background: white;
-  border: 1px solid #ccc;
+  background: var(--menu-bg-color);
+  border: 1px solid var(--menu-border-color);
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   list-style: none;
   padding: 4px 0;
   z-index: 1000;
-  animation: fadeIn 0.15s ease-out;
+  animation: scaleUp 0.18s ease-out;
+  transform-origin: top left;
   visibility: hidden;
-} */
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 0 1px var(--input-focus-color);
+  }
+}
 
 .menu li {
   padding: 8px 12px;
   cursor: pointer;
+  color: var(--menu-item-text-color);
 }
 
 .menu li:hover,
 .menu li.highlighted {
-  background-color: #eee;
+  background-color: var(--menu-item-bg-color-hover);
 }
 
 @keyframes fadeIn {
@@ -46,21 +61,6 @@
   }
 }
 
-.menu {
-  position: absolute;
-  min-width: 150px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  list-style: none;
-  padding: 4px 0;
-  z-index: 1000;
-  animation: scaleUp 0.18s ease-out;
-  transform-origin: top left; /* Default — can be overridden dynamically */
-  visibility: hidden;
-}
-
 @keyframes scaleUp {
   0% {
     transform: scale(0.85);
@@ -70,14 +70,4 @@
     transform: scale(1);
     opacity: 1;
   }
-}
-
-.menu li {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.menu li:hover,
-.menu li.highlighted {
-  background-color: #eee;
 }

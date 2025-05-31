@@ -68,7 +68,15 @@
         </div>
       </div>
     } @empty {
-      <p>No projects found.</p>
+      <div class="no-projects">
+        <app-empty-block
+          title="No Projects Found"
+          description="You need to create your project to see here."
+          ctaText="Add Project"
+          (onCallToAction)="openProjectModal()"
+        >
+        </app-empty-block>
+      </div>
     }
   </div>
 }

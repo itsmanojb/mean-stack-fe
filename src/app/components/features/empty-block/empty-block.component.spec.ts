@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListboxComponent } from './listbox.component';
+import { EmptyBlockComponent } from './empty-block.component';
 
-describe('ListboxComponent', () => {
-  let component: ListboxComponent;
-  let fixture: ComponentFixture<ListboxComponent>;
+describe('EmptyBlockComponent', () => {
+  let component: EmptyBlockComponent;
+  let fixture: ComponentFixture<EmptyBlockComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListboxComponent]
+      imports: [EmptyBlockComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListboxComponent);
+    fixture = TestBed.createComponent(EmptyBlockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

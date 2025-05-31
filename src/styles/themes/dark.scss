@@ -1,24 +1,66 @@
 [data-theme="dark"],
 body.dark {
   --app-bg-color: var(--color-black-15);
+  --app-bg-color-muted: var(--color-black-25);
   --app-fg-color: var(--color-white-15);
+  --app-fg-color-muted: var(--color-white-50);
 
-  --card-bg-color: var(--app-bg-color);
-  --card-border-color: var(--color-black-20);
+  --app-line-color: var(--color-white-10);
 
-  --skeleton-bg-color: var(--color-black-20);
-  --skeleton-fg-color: var(--color-black-30);
+  --card-bg-color: var(--color-black-20);
+  --card-border-color: var(--color-black-25);
+
+  --input-bg-color: var(--app-bg-color);
+  --input-border-color: var(--color-black-20);
+  --input-focus-color: var(--color-primary-darker);
+  --input-text-color: var(--color-white-15);
+  --input-placeholder-color: var(--color-white-50);
+
+  --menu-bg-color: var(--app-bg-color);
+  --menu-border-color: var(--color-black-20);
+  --menu-item-bg-color: var(--color-black-15);
+  --menu-item-text-color: var(--color-white-15);
+  --menu-item-divider-color: var(--color-black-20);
+  --menu-item-bg-color-hover: var(--color-black-20);
+  --menu-item-bg-color-focused: var(--color-black-10);
+
+  --skeleton-bg-color: var(--color-black-15);
+  --skeleton-fg-color: var(--color-black-20);
+
+  --progress-bar-bg-color: var(--color-black-30);
+  --img-placeholder-bg-color: var(--color-black-20);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --app-bg-color: var(--color-black-15);
+    --app-bg-color-muted: var(--color-black-25);
     --app-fg-color: var(--color-white-15);
+    --app-fg-color-muted: var(--color-white-50);
 
-    --card-bg-color: var(--app-bg-color);
+    --app-line-color: var(--color-white-10);
+
+    --card-bg-color: var(--color-black-15);
     --card-border-color: var(--color-black-20);
+
+    --input-bg-color: var(--app-bg-color);
+    --input-border-color: var(--color-black-20);
+    --input-focus-color: var(--color-primary-darker);
+    --input-text-color: var(--color-white-15);
+    --input-placeholder-color: var(--color-white-50);
+
+    --menu-bg-color: var(--app-bg-color);
+    --menu-border-color: var(--color-black-20);
+    --menu-item-bg-color: var(--color-black-15);
+    --menu-item-text-color: var(--color-white-15);
+    --menu-item-divider-color: var(--color-black-20);
+    --menu-item-bg-color-hover: var(--color-black-20);
+    --menu-item-bg-color-focused: var(--color-black-10);
 
     --skeleton-bg-color: var(--color-black-20);
     --skeleton-fg-color: var(--color-black-30);
+
+    --progress-bar-bg-color: var(--color-black-30);
+    --img-placeholder-bg-color: var(--color-black-20);
   }
 }

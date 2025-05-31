@@ -2,24 +2,24 @@
   /* Color HSL base values */
 
   --hue-primary: 220;
-  --sat-primary: 90%;
-  --lum-primary: 60%;
+  --sat-primary: 70%;
+  --lum-primary: 50%;
 
   --color-primary: hsl(var(--hue-primary), var(--sat-primary), var(--lum-primary));
-  --color-primary-dark: color-mix(in srgb, var(--color-primary), black 10%);
-  --color-primary-darker: color-mix(in srgb, var(--color-primary), black 20%);
-  --color-primary-light: color-mix(in srgb, var(--color-primary), white 10%);
-  --color-primary-lighter: color-mix(in srgb, var(--color-primary), white 20%);
+  --color-primary-dark: color-mix(in srgb, var(--color-primary), black 15%);
+  --color-primary-darker: color-mix(in srgb, var(--color-primary), black 25%);
+  --color-primary-light: color-mix(in srgb, var(--color-primary), white 15%);
+  --color-primary-lighter: color-mix(in srgb, var(--color-primary), white 25%);
 
   --hue-secondary: 30;
-  --sat-secondary: 100%;
-  --lum-secondary: 50%;
+  --sat-secondary: 95%;
+  --lum-secondary: 65%;
 
   --color-secondary: hsl(var(--hue-secondary), var(--sat-secondary), var(--lum-secondary));
-  --color-secondary-dark: color-mix(in srgb, var(--color-secondary), black 10%);
-  --color-secondary-darker: color-mix(in srgb, var(--color-secondary), black 20%);
+  --color-secondary-dark: color-mix(in srgb, var(--color-secondary), black 15%);
+  --color-secondary-darker: color-mix(in srgb, var(--color-secondary), black 25%);
   --color-secondary-light: color-mix(in srgb, var(--color-secondary), white 10%);
-  --color-secondary-lighter: color-mix(in srgb, var(--color-secondary), white 20%);
+  --color-secondary-lighter: color-mix(in srgb, var(--color-secondary), white 25%);
 
   --color-white: #fff;
   --color-white-5: color-mix(in srgb, var(--color-white), black 5%);
@@ -44,4 +44,16 @@
   --color-black-40: color-mix(in srgb, var(--color-black), white 40%);
   --color-black-45: color-mix(in srgb, var(--color-black), white 45%);
   --color-black-50: color-mix(in srgb, var(--color-black), white 50%);
+
+  --color-red: #9e2525;
+  --color-red-dark: color-mix(in srgb, var(--color-red), black 15%);
+  --color-red-light: color-mix(in srgb, var(--color-red), white 15%);
+
+  --color-green: #109939;
+  --color-green-dark: color-mix(in srgb, var(--color-green), black 15%);
+  --color-green-light: color-mix(in srgb, var(--color-green), white 15%);
+
+  --color-orange: #d79c05;
+  --color-green-dark: color-mix(in srgb, var(--color-orange), black 15%);
+  --color-green-light: color-mix(in srgb, var(--color-orange), white 15%);
 }

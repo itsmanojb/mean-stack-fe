@@ -1,8 +1,9 @@
 .select-trigger {
-  border: 1px solid #ccc;
-  padding: 8px;
+  height: var(--select-trigger-height, 44px);
+  border: 1px solid var(--input-border-color);
+  padding: var(--input-inline-padding) 8px;
   cursor: pointer;
-  background: white;
+  background: var(--input-bg-color);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -10,27 +11,33 @@
   gap: 5px;
 
   .value-text {
+    font-size: 0.9rem;
+    color: var(--input-text-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     flex: 1;
+    color: var(--input-text-color);
+
+    &.placeholder {
+      color: var(--input-placeholder-color);
+    }
   }
 }
 
 .dropdown-wrapper {
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
   width: 100%;
 }
 
 .dropdown-content {
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  background: var(--menu-bg-color);
+  border: 1px solid var(--menu-border-color);
+  border-radius: var(--radius-sm);
   max-height: 300px;
   overflow: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: var(--menu-bg-color);
+  box-shadow: var(--box-shadow-md);
   width: 100%; // Or match width with origin
 }
 
@@ -49,19 +56,10 @@
   padding: 0.75rem 8px;
 }
 
-.search-box {
-  width: calc(100% - 16px);
-  padding: 6px;
-  margin: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
 .group-title {
   font-weight: 500;
   padding: 6px 8px;
-  border-block: 1px solid #eee;
-  background-color: #fafafa;
+  background-color: var(--menu-item-divider-color);
 
   label {
     display: flex;
@@ -86,10 +84,9 @@
 }
 
 .dropdown-items {
-  padding: 8px;
-
   .dropdown-item {
     user-select: none;
+    padding: 4px 8px;
 
     label {
       cursor: pointer;
@@ -106,8 +103,9 @@
       flex: 1;
     }
 
+    &:hover,
     &.focused {
-      background-color: #f0f0f0;
+      background-color: var(--menu-item-bg-color-focused);
     }
 
     &.selected {
@@ -117,6 +115,10 @@
     &.disabled {
       opacity: 0.6;
       pointer-events: none;
+    }
+
+    & + .dropdown-item {
+      border-top: 1px solid var(--menu-item-divider-color);
     }
   }
 }

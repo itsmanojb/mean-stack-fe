@@ -56,6 +56,7 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
   value = '';
   validationError: string | null = null;
 
+  private formControl?: AbstractControl;
   private onChange = (_: any) => {};
   private onTouched = () => {};
 
@@ -100,22 +101,30 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (this.required && !this.value?.trim()) {
-      this.validationError = 'This field is required.';
-    } else if (this.minLength && this.value.length < this.minLength) {
-      this.validationError = `Minimum ${this.minLength} characters required.`;
-    } else if (this.maxLength && this.value.length > this.maxLength) {
-      this.validationError = `Maximum ${this.maxLength} characters allowed.`;
-    } else {
-      this.validationError = null;
+    // Store reference so we can use it for status checking
+    this.formControl = control;
+
+    const value = control.value ?? '';
+    let error: string | null = null;
+
+    if (this.required && !value.trim()) {
+      error = 'This field is required.';
+    } else if (this.minLength && value.length < this.minLength) {
+      error = `Minimum ${this.minLength} characters required.`;
+    } else if (this.maxLength && value.length > this.maxLength) {
+      error = `Maximum ${this.maxLength} characters allowed.`;
     }
 
+    const shouldShowError = control.touched || control.dirty;
+    this.validationError = shouldShowError ? error : null;
+
     this.errorChange.emit(this.validationError);
-    return this.validationError ? { validationError: this.validationError } : null;
+    return error ? { validationError: error } : null;
   }
 
-  private validateAndEmitError() {
-    const fakeControl = { value: this.value } as AbstractControl;
-    this.validate(fakeControl);
+  private validateAndEmitError(): void {
+    if (this.formControl) {
+      this.validate(this.formControl);
+    }
   }
 }

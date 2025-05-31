@@ -1,4 +1,4 @@
-<div class="auto-grow-container">
+<div class="app-textarea">
   <textarea
     #textarea
     [(ngModel)]="value"
@@ -13,9 +13,9 @@
     class="auto-grow-textarea"
   ></textarea>
   <div class="info-bar" *ngIf="showCounter || showErrors">
-    <span *ngIf="showCounter && maxLength" class="char-counter"> {{ value.length }}/{{ maxLength }} </span>
     <span *ngIf="showErrors && validationError" class="error-msg">
       {{ validationError }}
     </span>
+    <span *ngIf="showCounter && maxLength" class="char-counter"> {{ value.length }}/{{ maxLength }} </span>
   </div>
 </div>
