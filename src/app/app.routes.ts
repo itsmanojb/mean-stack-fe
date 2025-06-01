@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LoginComponent, DashboardComponent, ProjectHomeComponent, PageNotFoundComponent } from '@app/pages/index';
+import { LoginComponent, DashboardComponent, ProjectLayoutComponent, PageNotFoundComponent } from '@app/pages/index';
 import { sessionGuard, authenticationGuard } from '@utils/guards';
 
 export const routes: Routes = [
@@ -23,7 +23,7 @@ export const routes: Routes = [
   {
     path: 'project/:id',
     canActivate: [authenticationGuard],
-    component: ProjectHomeComponent,
+    component: ProjectLayoutComponent,
     children: [
       {
         path: 'overview',

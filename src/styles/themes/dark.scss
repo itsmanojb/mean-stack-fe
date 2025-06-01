@@ -6,6 +6,16 @@ body.dark {
   --app-fg-color-muted: var(--color-white-50);
 
   --app-line-color: var(--color-white-10);
+  --app-content-bg-color: var(--color-black-20);
+
+  --app-sidebar-bg-color: var(--color-black-15);
+  --app-sidebar-border-color: var(--color-black-20);
+  --app-sidebar-item-bg-color: transparent;
+  --app-sidebar-item-bg-color-hover: var(--color-black-20);
+  --app-sidebar-item-bg-color-active: var(--color-black-20);
+  --app-sidebar-item-text-color: var(--color-white-20);
+  --app-sidebar-item-text-color-hover: var(--color-white-20);
+  --app-sidebar-item-text-color-active: var(--color-white-20);
 
   --card-bg-color: var(--color-black-20);
   --card-border-color: var(--color-black-25);
@@ -39,6 +49,19 @@ body.dark {
     --app-fg-color-muted: var(--color-white-50);
 
     --app-line-color: var(--color-white-10);
+    --app-content-bg-color: var(--color-black-20);
+
+    --app-header-bg-color: var(--color-black-15);
+    --app-header-border-color: var(--color-black-20);
+
+    --app-sidebar-bg-color: var(--color-black-15);
+    --app-sidebar-border-color: var(--color-black-20);
+    --app-sidebar-item-bg-color: transparent;
+    --app-sidebar-item-bg-color-hover: var(--color-black-20);
+    --app-sidebar-item-bg-color-active: var(--color-black-20);
+    --app-sidebar-item-text-color: var(--color-white-20);
+    --app-sidebar-item-text-color-hover: var(--color-white-20);
+    --app-sidebar-item-text-color-active: var(--color-white-20);
 
     --card-bg-color: var(--color-black-15);
     --card-border-color: var(--color-black-20);

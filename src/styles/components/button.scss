@@ -33,7 +33,7 @@ button.btn {
     background-color: var(--button-color);
     border-color: var(--button-color);
 
-    &:not(.default) {
+    &:not(.default, .white) {
       --button-text-color: #fff;
     }
 
@@ -68,10 +68,20 @@ button.btn {
     --button-color-hover: var(--color-secondary-dark);
   }
 
+  &.white {
+    --button-color: var(--color-white);
+    --button-color-active: var(--color-white-10);
+    --button-color-hover: var(--color-white-5);
+  }
+
   &.default {
-    --button-color: light-dark(var(--color-white-10), var(--color-black-20));
-    --button-color-active: light-dark(var(--color-white-20), var(--color-black-15));
-    --button-color-hover: light-dark(var(--color-white-20), var(--color-black-25));
+    background-color: transparent;
+    border-color: light-dark(var(--color-white-30), var(--color-black-20));
+
+    &.active {
+      background-color: light-dark(var(--color-black-50), var(--color-black-20));
+      border-color: light-dark(var(--color-black-50), var(--color-black-20));
+    }
   }
 
   &.active {

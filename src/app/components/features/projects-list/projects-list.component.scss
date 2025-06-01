@@ -34,14 +34,10 @@
     justify-content: flex-end;
   }
 
-  &:not(.skel):hover {
-    // transform: translateY(-2px);
-    box-shadow: var(--box-shadow-lg);
-  }
-
-  &:not(.skel):focus-within {
-    box-shadow: var(--box-shadow-lg);
-  }
+  /* &:not(.skel):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-xs);
+  } */
 
   &.skel {
     padding: 18px 12px;

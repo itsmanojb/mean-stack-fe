@@ -1,15 +1,14 @@
-@layer base, components, layout, utilities, themes, vendors;
+@layer base, components, utilities, themes, vendors;
 
 @import "base/reset.scss" layer(base);
 @import "base/colors.scss" layer(base);
-@import "base/variables.scss" layer(base);
+@import "base/tokens.scss" layer(base);
 @import "base/global.scss" layer(base);
 
 @import "components/common.scss" layer(components);
+@import "components/layout.scss" layer(components);
 @import "components/button.scss" layer(components);
 @import "components/form-controls.scss" layer(components);
-
-@import "layouts/default.scss" layer(layout);
 
 @import "utilities/spacing.scss" layer(utilities);
 @import "utilities/display.scss" layer(utilities);

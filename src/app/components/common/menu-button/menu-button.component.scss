@@ -22,8 +22,7 @@
   position: absolute;
   min-width: 150px;
   background: var(--menu-bg-color);
-  border: 1px solid var(--menu-border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow-md);
   list-style: none;
   padding: 4px 0;
@@ -31,11 +30,10 @@
   animation: scaleUp 0.18s ease-out;
   transform-origin: top left;
   visibility: hidden;
+  box-shadow: var(--box-shadow-xs);
 
   &:focus-visible {
     outline: none;
-    border-color: var(--input-focus-color);
-    box-shadow: 0 0 0 1px var(--input-focus-color);
   }
 }
 

@@ -17,9 +17,11 @@
   --radius-lg: 16px;
 
   /* Box shadows */
-  --box-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --box-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.15);
-  --box-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --box-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --box-shadow-sm: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --box-shadow-md: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --box-shadow-lg: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  --box-shadow-xl: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
   /* Containers */
   --container-sm: 640px;
@@ -27,4 +29,9 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
   --container-xxl: 1440px;
+
+  /* Overlays */
+  --overlay-bg-color: rgba(0, 0, 0, 0.5);
+  --overlay-bg-color-dark: rgba(0, 0, 0, 0.8);
+  --overlay-bg-color-light: rgba(255, 255, 255, 0.8);
 }

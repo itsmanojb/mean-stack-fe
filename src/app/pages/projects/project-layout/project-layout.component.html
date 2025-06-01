@@ -1,0 +1,26 @@
+<div class="project-layout-container" [class.sidebar-collapsed]="isSidebarCollapsed" [class.mobile]="isMobile">
+  <header>
+    <button
+      class="sidebar-toggle"
+      (click)="toggleSidebar()"
+      [attr.aria-expanded]="!isSidebarCollapsed"
+      aria-label="Toggle sidebar"
+    >
+      ☰
+    </button>
+    <app-top-navbar></app-top-navbar>
+  </header>
+  <div class="main-layout">
+    <app-project-sidebar
+      [projectId]="projectId"
+      [isCollapsed]="isSidebarCollapsed"
+      [isMobile]="isMobile"
+      (onBackdrop)="toggleSidebar()"
+      [fixedHeader]="true"
+      [fixedFooter]="true"
+    ></app-project-sidebar>
+    <main [ngClass]="mainClasses">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

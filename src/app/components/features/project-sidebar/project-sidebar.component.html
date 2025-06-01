@@ -1,0 +1,73 @@
+<aside
+  class="project-sidebar"
+  [class.mobile]="isMobile"
+  [@slideSidebar]="isMobile ? sidebarState : null"
+  [class.collapsed]="isCollapsed"
+  role="navigation"
+  aria-label="Main sidebar"
+>
+  <!-- Top (sticky) -->
+  @if (fixedHeader) {
+    <div class="sidebar-top">
+      <a class="navlink" [routerLink]="'/app'">
+        <span class="icon">🚀</span>
+        <span class="label" *ngIf="!isCollapsed">My App</span>
+      </a>
+    </div>
+  }
+
+  <!-- Scrollable middle -->
+  <div class="sidebar-content">
+    <nav>
+      <ul>
+        <li>
+          <a
+            class="navlink"
+            [routerLink]="'/project/' + projectId + '/overview'"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            title="Overview"
+          >
+            <span class="icon">🏠</span>
+            <span class="label" *ngIf="!isCollapsed">Overview</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
+            [routerLink]="'/project/' + projectId + '/analytics'"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            title="Analytics"
+          >
+            <span class="icon">📊</span>
+            <span class="label" *ngIf="!isCollapsed">Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
+            [routerLink]="'/project/' + projectId + '/tasks'"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            title="Tasks"
+          >
+            <span class="icon">⚙️</span>
+            <span class="label" *ngIf="!isCollapsed">Tasks</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Bottom (sticky) -->
+  @if (fixedFooter) {
+    <div class="sidebar-bottom">
+      <button class="icon-btn" title="Help">❓</button>
+      <button class="icon-btn" title="Logout">🔒</button>
+    </div>
+  }
+</aside>
+
+<!-- Backdrop (mobile only) -->
+<div class="backdrop" *ngIf="isMobile && !isCollapsed" (click)="onBackdrop.emit()" aria-hidden="true"></div>

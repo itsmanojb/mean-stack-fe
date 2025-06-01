@@ -11,7 +11,7 @@ export class ButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
 
   @Input() variant?: 'solid' | 'outline' | 'ghost';
-  @Input() color?: 'primary' | 'secondary' | 'default';
+  @Input() color?: 'primary' | 'secondary' | 'white' | 'default';
   @Input() size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   @Input() rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full' | 'left' | 'right';
   @Input() loadingText?: string;

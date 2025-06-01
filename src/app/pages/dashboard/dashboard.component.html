@@ -1,4 +1,4 @@
-<div class="container fluid">
+<div class="container">
   <div class="header-banner">
     <div>
       <h1 class="title">Dashboard</h1>
@@ -7,7 +7,7 @@
     <app-button
       type="button"
       rounded="md"
-      color="primary"
+      color="white"
       appTooltip="Click to add Project!"
       tooltipPosition="bottom"
       (click)="openProjectModal()"
@@ -20,10 +20,22 @@
     <div class="controls">
       @if (items().length > 0) {
         <div class="btn-group flex">
-          <app-button type="button" [activated]="viewAs === 'grid'" (click)="viewAs = 'grid'" rounded="left">
+          <app-button
+            type="button"
+            variant="outline"
+            [activated]="viewAs === 'grid'"
+            (click)="viewAs = 'grid'"
+            rounded="left"
+          >
             Grid
           </app-button>
-          <app-button type="button" [activated]="viewAs === 'list'" (click)="viewAs = 'list'" rounded="right">
+          <app-button
+            type="button"
+            variant="outline"
+            [activated]="viewAs === 'list'"
+            (click)="viewAs = 'list'"
+            rounded="right"
+          >
             List
           </app-button>
         </div>

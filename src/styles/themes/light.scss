@@ -1,30 +1,76 @@
 [data-theme="light"],
 body.light {
-  --app-bg-color: var(--color-white);
+  --app-bg-color: var(--color-white-5);
+  --app-bg-color-muted: var(--color-white-10);
   --app-fg-color: var(--color-black-15);
+  --app-fg-color-muted: var(--color-black-40);
 
-  --card-bg-color: var(--app-bg-color);
-  --card-border-color: var(--color-white-20);
+  --app-line-color: var(--color-black-50);
+
+  --app-header-bg-color: var(--color-white);
+  --app-header-border-color: var(--color-white-10);
+  --app-sidebar-bg-color: var(--color-white);
+  --app-sidebar-border-color: var(--color-white-10);
+
+  --card-bg-color: var(--color-white);
+  --card-border-color: var(--color-white-10);
 
   --input-bg-color: var(--app-bg-color);
   --input-border-color: var(--color-black-20);
+  --input-focus-color: var(--color-primary);
+  --input-text-color: var(--color-black-15);
+  --input-placeholder-color: var(--color-black-50);
 
-  --skeleton-bg-color: var(--color-white-20);
-  --skeleton-fg-color: var(--color-white-30);
+  --skeleton-bg-color: var(--color-white-10);
+  --skeleton-fg-color: var(--color-white-20);
+
+  --menu-bg-color: var(--color-white);
+  --menu-border-color: var(--color-white-10);
+  --menu-item-bg-color: var(--color-white-15);
+  --menu-item-text-color: var(--color-black-25);
+  --menu-item-divider-color: var(--color-white-20);
+  --menu-item-bg-color-hover: var(--color-white-10);
+  --menu-item-bg-color-focused: var(--color-white-10);
+
+  --progress-bar-bg-color: var(--color-white-10);
+  --img-placeholder-bg-color: var(--color-white-10);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --app-bg-color: var(--color-white);
+    --app-bg-color: var(--color-white-5);
+    --app-bg-color-muted: var(--color-white-10);
     --app-fg-color: var(--color-black-15);
+    --app-fg-color-muted: var(--color-black-40);
 
-    --card-bg-color: var(--app-bg-color);
-    --card-border-color: var(--color-white-20);
+    --app-line-color: var(--color-black-50);
+
+    --app-header-bg-color: var(--color-white);
+    --app-header-border-color: var(--color-white-10);
+    --app-sidebar-bg-color: var(--color-white);
+    --app-sidebar-border-color: var(--color-white-10);
+
+    --card-bg-color: var(--color-white);
+    --card-border-color: var(--color-white-10);
 
     --input-bg-color: var(--app-bg-color);
     --input-border-color: var(--color-black-20);
+    --input-focus-color: var(--color-primary);
+    --input-text-color: var(--color-black-15);
+    --input-placeholder-color: var(--color-black-50);
 
-    --skeleton-bg-color: var(--color-white-20);
-    --skeleton-fg-color: var(--color-white-30);
+    --menu-bg-color: var(--color-white);
+    --menu-border-color: var(--color-white-10);
+    --menu-item-bg-color: var(--color-white-15);
+    --menu-item-text-color: var(--color-black-25);
+    --menu-item-divider-color: var(--color-white-20);
+    --menu-item-bg-color-hover: var(--color-white-10);
+    --menu-item-bg-color-focused: var(--color-white-10);
+
+    --skeleton-bg-color: var(--color-white-10);
+    --skeleton-fg-color: var(--color-white-20);
+
+    --progress-bar-bg-color: var(--color-white-10);
+    --img-placeholder-bg-color: var(--color-white-10);
   }
 }
