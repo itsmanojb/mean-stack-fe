@@ -1,1 +1,17 @@
-<p>top-navbar works!</p>
+<nav class="top-nav">
+  <div class="brand">
+    <a routerLink="/">My App</a>
+  </div>
+  <div class="spacer"></div>
+  <div class="account-menu">
+    <app-menu-button
+      [options]="accountOptions"
+      [displayKey]="'label'"
+      [position]="'bottom'"
+      horizontalAlign="right"
+      (optionSelected)="onOptionSelected($event)"
+    >
+      <div class="avatar">AB</div>
+    </app-menu-button>
+  </div>
+</nav>

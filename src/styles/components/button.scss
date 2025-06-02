@@ -70,6 +70,7 @@ button.btn {
 
   &.white {
     --button-color: var(--color-white);
+    --button-text-color: var(--color-black-10);
     --button-color-active: var(--color-white-10);
     --button-color-hover: var(--color-white-5);
   }

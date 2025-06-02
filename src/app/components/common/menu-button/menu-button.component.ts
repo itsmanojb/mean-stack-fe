@@ -21,6 +21,7 @@ export class MenuButtonComponent {
   @Input() options: any[] = [];
   @Input() displayKey: string = '';
   @Input() position: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
+  @Input() horizontalAlign: 'left' | 'right' = 'left';
   @Output() optionSelected = new EventEmitter<any>();
 
   isOpen = signal(false);
@@ -120,13 +121,19 @@ export class MenuButtonComponent {
     switch (pos) {
       case 'top':
         top = trigger.offsetTop - menu.offsetHeight;
-        left = trigger.offsetLeft;
-        transformOrigin = 'bottom left';
+        left =
+          this.horizontalAlign === 'left'
+            ? trigger.offsetLeft
+            : trigger.offsetLeft + trigger.offsetWidth - menu.offsetWidth;
+        transformOrigin = this.horizontalAlign === 'left' ? 'bottom left' : 'bottom right';
         break;
       case 'bottom':
         top = trigger.offsetTop + trigger.offsetHeight;
-        left = trigger.offsetLeft;
-        transformOrigin = 'top left';
+        left =
+          this.horizontalAlign === 'left'
+            ? trigger.offsetLeft
+            : trigger.offsetLeft + trigger.offsetWidth - menu.offsetWidth;
+        transformOrigin = this.horizontalAlign === 'left' ? 'top left' : 'top right';
         break;
       case 'left':
         top = trigger.offsetTop;

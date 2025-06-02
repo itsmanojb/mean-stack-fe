@@ -9,14 +9,24 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ButtonComponent } from '@components/common/button/button.component';
 
 @Component({
   selector: 'app-confirm-dialog',
-  imports: [NgIf],
+  imports: [ButtonComponent],
   templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.scss'],
+  styles: [
+    `
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        column-gap: 10px;
+        margin-top: 2rem;
+      }
+    `,
+  ],
   animations: [
     trigger('fadeScale', [
       transition(':enter', [

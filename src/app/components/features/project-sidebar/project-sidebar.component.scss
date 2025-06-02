@@ -154,13 +154,3 @@ aside.project-sidebar {
   font-size: 1rem;
   color: var(--app-sidebar-item-text-color);
 }
-
-.backdrop {
-  position: fixed;
-  top: var(--layout-header-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--overlay-bg-color);
-  z-index: 1000;
-}

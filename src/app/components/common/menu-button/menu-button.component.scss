@@ -4,13 +4,15 @@
 }
 
 .trigger {
+  width: 100%;
+  aspect-ratio: 1;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 2px 4px;
   font-size: 16px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--menu-btn-radius, --radius-sm);
   color: var(--app-fg-color-muted);
+  padding: 0;
 
   &:focus-visible {
     outline: 2px solid var(--input-focus-color);

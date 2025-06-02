@@ -45,6 +45,26 @@
   animation: shimmer 1.5s infinite linear;
 }
 
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 200ms ease-out;
+}
+
+.dialog {
+  background: var(--dialog-bg-color);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: var(--box-shadow-md);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .skeleton {
     animation: none;
@@ -58,5 +78,14 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -35,6 +35,18 @@
         <li>
           <a
             class="navlink"
+            [routerLink]="'/project/' + projectId + '/jobs'"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            title="All Jobs"
+          >
+            <span class="icon">⚙️</span>
+            <span class="label" *ngIf="!isCollapsed">All Jobs</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
             [routerLink]="'/project/' + projectId + '/analytics'"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
@@ -47,13 +59,25 @@
         <li>
           <a
             class="navlink"
+            [routerLink]="'/project/' + projectId + '/job-builder'"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            title="Job Builder"
+          >
+            <span class="icon">📊</span>
+            <span class="label" *ngIf="!isCollapsed">Builder</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
             [routerLink]="'/project/' + projectId + '/tasks'"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
-            title="Tasks"
+            title="All Tasks"
           >
             <span class="icon">⚙️</span>
-            <span class="label" *ngIf="!isCollapsed">Tasks</span>
+            <span class="label" *ngIf="!isCollapsed">All Tasks</span>
           </a>
         </li>
       </ul>

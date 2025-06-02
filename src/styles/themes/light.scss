@@ -21,9 +21,6 @@ body.light {
   --input-text-color: var(--color-black-15);
   --input-placeholder-color: var(--color-black-50);
 
-  --skeleton-bg-color: var(--color-white-10);
-  --skeleton-fg-color: var(--color-white-20);
-
   --menu-bg-color: var(--color-white);
   --menu-border-color: var(--color-white-10);
   --menu-item-bg-color: var(--color-white-15);
@@ -31,6 +28,11 @@ body.light {
   --menu-item-divider-color: var(--color-white-20);
   --menu-item-bg-color-hover: var(--color-white-10);
   --menu-item-bg-color-focused: var(--color-white-10);
+
+  --skeleton-bg-color: var(--color-white-10);
+  --skeleton-fg-color: var(--color-white-20);
+
+  --dialog-bg-color: var(--color-white);
 
   --progress-bar-bg-color: var(--color-white-10);
   --img-placeholder-bg-color: var(--color-white-10);
@@ -69,6 +71,8 @@ body.light {
 
     --skeleton-bg-color: var(--color-white-10);
     --skeleton-fg-color: var(--color-white-20);
+
+    --dialog-bg-color: var(--color-white);
 
     --progress-bar-bg-color: var(--color-white-10);
     --img-placeholder-bg-color: var(--color-white-10);

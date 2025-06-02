@@ -1,5 +1,5 @@
 :root {
-  --layout-header-height: 56px;
+  --layout-header-height: 60px;
   --layout-footer-height: 40px;
   --layout-sidebar-width: 250px;
   --layout-sidebar-width-collpased: 60px;
@@ -21,7 +21,7 @@
     z-index: 1100;
     height: var(--layout-header-height);
     border-bottom: 1px solid var(--app-header-border-color);
-    padding-inline: var(--space-xs);
+    padding: 0.5rem var(--space-xs);
 
     .sidebar-toggle {
       font-size: 1.5rem;
@@ -34,6 +34,10 @@
       &:focus-visible {
         outline: 2px solid var(--color-primary);
       }
+    }
+
+    .top-navbar {
+      flex: 1;
     }
   }
 

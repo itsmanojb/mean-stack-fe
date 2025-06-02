@@ -1,10 +1,14 @@
 <div class="backdrop">
-  <div *ngIf="isVisible" class="dialog" @fadeScale #dialogRef>
-    <h2>{{ title }}</h2>
-    <p>{{ message }}</p>
-    <div class="actions">
-      <button (click)="onCancel()">Cancel</button>
-      <button (click)="onConfirm()">Confirm</button>
+  @if (isVisible) {
+    <div class="dialog" @fadeScale #dialogRef>
+      <h2>{{ title }}</h2>
+      <p>{{ message }}</p>
+      <div class="actions">
+        <app-button type="button" rounded="sm" variant="ghost" color="primary" (click)="onCancel()">Cancel</app-button>
+        <app-button type="button" rounded="sm" variant="solid" color="primary" (click)="onConfirm()"
+          >Confirm</app-button
+        >
+      </div>
     </div>
-  </div>
+  }
 </div>
