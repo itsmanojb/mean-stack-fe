@@ -1,1 +1,8 @@
-<p>bulk-upload works!</p>
+<app-dropzone
+  [multiple]="true"
+  [accept]="['image/png', 'image/jpeg']"
+  [maxSizeMB]="2"
+  (filesDropped)="onValidFiles($event)"
+  (invalidFiles)="onInvalidFiles($event)"
+  placeholder="Drag & Drop your images"
+></app-dropzone>

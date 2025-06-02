@@ -1,0 +1,22 @@
+<div
+  class="dropzone"
+  [class.drag-over]="dragOverSignal()"
+  [class.invalid]="invalidDropSignal()"
+  (click)="fileInput.click()"
+>
+  <input
+    #fileInput
+    type="file"
+    [attr.multiple]="multiple ? '' : null"
+    [attr.accept]="accept?.join(',')"
+    (change)="onFileSelect($event)"
+    hidden
+  />
+  <ng-content></ng-content>
+  @if (!hasCustomContent) {
+    <div class="placeholder">
+      <p>{{ placeholder }}</p>
+      <p class="subtext">Drop files here or click to upload</p>
+    </div>
+  }
+</div>

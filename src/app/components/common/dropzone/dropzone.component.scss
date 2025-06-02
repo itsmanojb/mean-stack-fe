@@ -1,0 +1,31 @@
+.dropzone {
+  border: 2px dashed var(--app-line-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  align-items: center;
+  justify-content: center;
+
+  &.drag-over {
+    border-color: var(--color-primary);
+  }
+
+  &.invalid {
+    border-color: var(--color-red-dark);
+  }
+
+  .placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  .subtext {
+    font-size: 0.85rem;
+    color: var(--input-placeholder-color);
+    opacity: 0.75;
+  }
+}
