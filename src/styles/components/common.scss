@@ -65,6 +65,68 @@
   box-shadow: var(--box-shadow-md);
 }
 
+.progress-bar {
+  height: 8px;
+  background-color: var(--progress-bar-bg-color);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+
+  .progress-fill {
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+    background-color: var(--color-primary);
+    border-radius: inherit;
+  }
+
+  .indeterminate-bar {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-primary);
+    animation: indeterminate-bar 1.2s infinite ease-in-out;
+    border-radius: inherit;
+  }
+
+  &.striped .progress-fill,
+  &.striped .indeterminate-bar {
+    background-image: repeating-linear-gradient(
+      30deg,
+      var(--color-primary) 0px,
+      var(--color-primary) 10px,
+      var(--color-primary-lighter) 10px,
+      var(--color-primary-lighter) 20px
+    );
+    background-size: 40px 40px;
+    background-repeat: repeat;
+    animation: stripe 2s linear infinite;
+  }
+}
+
+@keyframes stripe {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 0;
+  }
+}
+
+@keyframes indeterminate-bar {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  50% {
+    left: 30%;
+    width: 60%;
+  }
+  100% {
+    left: 100%;
+    width: 40%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .skeleton {
     animation: none;
