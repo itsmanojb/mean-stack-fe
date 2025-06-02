@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent, DashboardComponent, ProjectLayoutComponent, PageNotFoundComponent } from '@app/pages/index';
 import { sessionGuard, authenticationGuard } from '@utils/guards';
+import { ProjectRoutesEnum, ProjectRouteNamesEnum } from '@shared/constants';
 
 export const routes: Routes = [
   {
@@ -26,16 +27,40 @@ export const routes: Routes = [
     component: ProjectLayoutComponent,
     children: [
       {
-        path: 'overview',
-        title: 'Project Overview',
+        path: ProjectRoutesEnum.OVERVIEW,
+        title: ProjectRouteNamesEnum.OVERVIEW,
         loadComponent: () =>
           import('@app/pages/projects/project-overview/project-overview.component').then(
             (c) => c.ProjectOverviewComponent,
           ),
       },
       {
-        path: 'analytics',
-        title: 'Project Analytics',
+        path: ProjectRoutesEnum.JOBS,
+        title: ProjectRouteNamesEnum.JOBS,
+        loadComponent: () =>
+          import('@app/pages/projects/jobs-library/jobs-library.component').then((c) => c.JobsLibraryComponent),
+      },
+      {
+        path: ProjectRoutesEnum.TASKS,
+        title: ProjectRouteNamesEnum.TASKS,
+        loadComponent: () =>
+          import('@app/pages/projects/tasks-library/tasks-library.component').then((c) => c.TasksLibraryComponent),
+      },
+      {
+        path: ProjectRoutesEnum.UPLOAD,
+        title: ProjectRouteNamesEnum.UPLOAD,
+        loadComponent: () =>
+          import('@app/pages/projects/bulk-upload/bulk-upload.component').then((c) => c.BulkUploadComponent),
+      },
+      {
+        path: ProjectRoutesEnum.BUILDER,
+        title: ProjectRouteNamesEnum.BUILDER,
+        loadComponent: () =>
+          import('@app/pages/projects/job-builder/job-builder.component').then((c) => c.JobBuilderComponent),
+      },
+      {
+        path: ProjectRoutesEnum.ANALYSIS,
+        title: ProjectRouteNamesEnum.ANALYSIS,
         loadComponent: () =>
           import('@app/pages/projects/project-analytics/project-analytics.component').then(
             (c) => c.ProjectAnalyticsComponent,

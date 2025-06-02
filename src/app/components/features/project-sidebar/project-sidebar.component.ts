@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ProjectRoutesEnum, ProjectRouteNamesEnum } from '@shared/constants';
 
 @Component({
   selector: 'app-project-sidebar',
@@ -23,6 +24,9 @@ export class ProjectSidebarComponent {
   @Input() isCollapsed = false;
   @Input() isMobile = false;
   @Output() onBackdrop = new EventEmitter<void>();
+
+  protected routePath = ProjectRoutesEnum;
+  protected routeName = ProjectRouteNamesEnum;
 
   get sidebarState() {
     return this.isCollapsed ? 'collapsed' : 'expanded';

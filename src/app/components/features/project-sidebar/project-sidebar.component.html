@@ -23,61 +23,73 @@
         <li>
           <a
             class="navlink"
-            [routerLink]="'/project/' + projectId + '/overview'"
+            [routerLink]="'/project/' + projectId + '/' + routePath.OVERVIEW"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
-            title="Overview"
+            [title]="routeName.OVERVIEW"
           >
             <span class="icon">🏠</span>
-            <span class="label" *ngIf="!isCollapsed">Overview</span>
+            <span class="label" *ngIf="!isCollapsed">{{ routeName.OVERVIEW }}</span>
           </a>
         </li>
         <li>
           <a
             class="navlink"
-            [routerLink]="'/project/' + projectId + '/jobs'"
+            [routerLink]="'/project/' + projectId + '/' + routePath.JOBS"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
-            title="All Jobs"
+            [title]="routeName.JOBS"
           >
             <span class="icon">⚙️</span>
-            <span class="label" *ngIf="!isCollapsed">All Jobs</span>
+            <span class="label" *ngIf="!isCollapsed">{{ routeName.JOBS }}</span>
           </a>
         </li>
         <li>
           <a
             class="navlink"
-            [routerLink]="'/project/' + projectId + '/analytics'"
+            [routerLink]="'/project/' + projectId + '/' + routePath.TASKS"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
-            title="Analytics"
-          >
-            <span class="icon">📊</span>
-            <span class="label" *ngIf="!isCollapsed">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a
-            class="navlink"
-            [routerLink]="'/project/' + projectId + '/job-builder'"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            title="Job Builder"
-          >
-            <span class="icon">📊</span>
-            <span class="label" *ngIf="!isCollapsed">Builder</span>
-          </a>
-        </li>
-        <li>
-          <a
-            class="navlink"
-            [routerLink]="'/project/' + projectId + '/tasks'"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            title="All Tasks"
+            [title]="routeName.TASKS"
           >
             <span class="icon">⚙️</span>
-            <span class="label" *ngIf="!isCollapsed">All Tasks</span>
+            <span class="label" *ngIf="!isCollapsed">{{ routeName.TASKS }}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
+            [routerLink]="'/project/' + projectId + '/' + routePath.UPLOAD"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            [title]="routeName.UPLOAD"
+          >
+            <span class="icon">📊</span>
+            <span class="label" *ngIf="!isCollapsed">{{ routeName.UPLOAD }}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
+            [routerLink]="'/project/' + projectId + '/' + routePath.BUILDER"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            [title]="routeName.BUILDER"
+          >
+            <span class="icon">📊</span>
+            <span class="label" *ngIf="!isCollapsed">{{ routeName.BUILDER }}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navlink"
+            [routerLink]="'/project/' + projectId + '/' + routePath.ANALYSIS"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            [title]="routeName.ANALYSIS"
+          >
+            <span class="icon">📊</span>
+            <span class="label" *ngIf="!isCollapsed">{{ routeName.ANALYSIS }}</span>
           </a>
         </li>
       </ul>

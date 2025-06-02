@@ -69,10 +69,15 @@ button.btn {
   }
 
   &.white {
-    --button-color: var(--color-white);
-    --button-text-color: var(--color-black-10);
     --button-color-active: var(--color-white-10);
-    --button-color-hover: var(--color-white-5);
+
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-black-10);
+
+    &:hover {
+      background-color: var(--color-white-5);
+    }
   }
 
   &.default {

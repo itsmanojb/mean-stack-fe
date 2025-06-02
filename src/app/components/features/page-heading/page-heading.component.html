@@ -1,0 +1,19 @@
+<div class="hero-heading">
+  @if (showBackButton) {
+    <div class="nav">
+      <button type="button" (click)="onBack.emit()">Back</button>
+    </div>
+  }
+  <div class="icon">
+    <ng-content select="[icon]"></ng-content>
+  </div>
+  <div>
+    <h1 class="title">{{ title }}</h1>
+    @if (subtitle) {
+      <p class="subtitle">{{ subtitle }}</p>
+    }
+  </div>
+  <div class="actions">
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</div>
