@@ -7,7 +7,7 @@ import { Project } from '@shared/interfaces/project.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DummyDataService {
-  private DummyProjects = [
+  private DummyProjects: Project[] = [
     {
       id: 1,
       projectName: 'Project 1',
@@ -312,6 +312,12 @@ export class DummyDataService {
         return of(mapped);
       }),
     );
+  }
+
+  getProjectById(id: string | null): Observable<Project | null> {
+    if (!id) return of(null);
+    const matched = this.DummyProjects.filter((project) => project.id === +id)[0];
+    return of(matched).pipe(delay(300));
   }
 
   searchFruits(term: string, page: number, pageSize: number): Observable<SearchResult> {

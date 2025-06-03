@@ -5,12 +5,20 @@ body.light {
   --app-fg-color: var(--color-black-15);
   --app-fg-color-muted: var(--color-black-40);
 
-  --app-line-color: var(--color-black-50);
+  --app-line-color: var(--color-white-10);
+  --app-content-bg-color: var(--color-white);
 
   --app-header-bg-color: var(--color-white);
   --app-header-border-color: var(--color-white-10);
-  --app-sidebar-bg-color: var(--color-white);
-  --app-sidebar-border-color: var(--color-white-10);
+
+  --app-sidebar-bg-color: var(--color-white-15);
+  --app-sidebar-border-color: var(--color-white-20);
+  --app-sidebar-item-bg-color: transparent;
+  --app-sidebar-item-bg-color-hover: var(--color-white-20);
+  --app-sidebar-item-bg-color-active: var(--color-white-20);
+  --app-sidebar-item-text-color: var(--color-white-20);
+  --app-sidebar-item-text-color-hover: var(--color-white-20);
+  --app-sidebar-item-text-color-active: var(--color-white-20);
 
   --card-bg-color: var(--color-white);
   --card-border-color: var(--color-white-10);
@@ -45,12 +53,20 @@ body.light {
     --app-fg-color: var(--color-black-15);
     --app-fg-color-muted: var(--color-black-40);
 
-    --app-line-color: var(--color-black-50);
+    --app-line-color: var(--color-white-10);
+    --app-content-bg-color: var(--color-white);
 
     --app-header-bg-color: var(--color-white);
     --app-header-border-color: var(--color-white-10);
+
     --app-sidebar-bg-color: var(--color-white);
     --app-sidebar-border-color: var(--color-white-10);
+    --app-sidebar-item-bg-color: transparent;
+    --app-sidebar-item-bg-color-hover: var(--color-white-10);
+    --app-sidebar-item-bg-color-active: var(--color-white-10);
+    --app-sidebar-item-text-color: var(--color-black-15);
+    --app-sidebar-item-text-color-hover: var(--color-black-20);
+    --app-sidebar-item-text-color-active: var(--color-black-20);
 
     --card-bg-color: var(--color-white);
     --card-border-color: var(--color-white-10);

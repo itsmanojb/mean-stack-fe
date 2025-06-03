@@ -1,0 +1,33 @@
+@if (breadcrumbs$ | async; as breadcrumbs) {
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      @for (crumb of getVisible(breadcrumbs); track $index; let i = $index) {
+        <ng-container>
+          <li
+            class="breadcrumb-item"
+            [class.active]="i === getVisible(breadcrumbs).length - 1 && !shouldCollapse(breadcrumbs)"
+          >
+            @if (i !== getVisible(breadcrumbs).length - 1) {
+              <a [routerLink]="crumb.url">{{ crumb.label }}</a>
+            } @else {
+              <span>{{ crumb.label }}</span>
+            }
+          </li>
+
+          @if (i < getVisible(breadcrumbs).length - 1) {
+            <li class="separator" aria-hidden="true">{{ separator }}</li>
+          }
+
+          @if (i === 0 && shouldCollapse(breadcrumbs)) {
+            <ng-container>
+              <li class="breadcrumb-item">
+                <button (click)="toggle()" class="dotdot">...</button>
+              </li>
+              <li class="separator" aria-hidden="true">{{ separator }}</li>
+            </ng-container>
+          }
+        </ng-container>
+      }
+    </ol>
+  </nav>
+}

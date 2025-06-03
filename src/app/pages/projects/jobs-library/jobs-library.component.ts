@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-jobs-library',
   imports: [],
   templateUrl: './jobs-library.component.html',
-  styleUrl: './jobs-library.component.scss'
+  styleUrl: './jobs-library.component.scss',
 })
-export class JobsLibraryComponent {
-
-}
+export class JobsLibraryComponent {}

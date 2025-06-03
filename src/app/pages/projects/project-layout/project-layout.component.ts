@@ -4,10 +4,11 @@ import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ProjectSidebarComponent } from '@components/features/project-sidebar/project-sidebar.component';
 import { TopNavbarComponent } from '@components/common/top-navbar/top-navbar.component';
+import { BreadcrumbsComponent } from '@components/common/breadcrumb/breadcrumbs.component';
 
 @Component({
   selector: 'app-project-home',
-  imports: [RouterModule, CommonModule, TopNavbarComponent, ProjectSidebarComponent],
+  imports: [RouterModule, CommonModule, TopNavbarComponent, ProjectSidebarComponent, BreadcrumbsComponent],
   templateUrl: './project-layout.component.html',
   animations: [
     trigger('slideSidebar', [

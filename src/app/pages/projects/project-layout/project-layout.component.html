@@ -22,6 +22,9 @@
       [fixedFooter]="true"
     ></app-project-sidebar>
     <main [ngClass]="mainClasses">
+      <div class="breadcrumb-wrapper">
+        <app-breadcrumbs></app-breadcrumbs>
+      </div>
       <router-outlet></router-outlet>
     </main>
   </div>

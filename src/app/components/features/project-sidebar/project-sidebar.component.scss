@@ -5,7 +5,7 @@ aside.project-sidebar {
   bottom: 0;
   width: var(--layout-sidebar-width);
   background-color: var(--app-sidebar-bg-color);
-  //   border-right: 1px solid var(--app-sidebar-border-color);
+  border-right: 1px solid var(--app-sidebar-border-color);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -126,6 +126,7 @@ aside.project-sidebar {
   padding: 0.5rem;
   border-radius: var(--radius-sm);
   transition: background 0.2s ease;
+  color: var(--app-sidebar-item-text-color);
 
   &:hover {
     color: var(--app-sidebar-item-text-color-hover);

@@ -56,6 +56,12 @@
       &.collapsed {
         margin-left: var(--layout-sidebar-width-collpased);
       }
+
+      .breadcrumb-wrapper {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid var(--app-line-color);
+        background: var(--app-content-bg-color);
+      }
     }
   }
 
