@@ -17,8 +17,7 @@
 @import "themes/light.scss" layer(themes);
 @import "themes/dark.scss" layer(themes);
 
-@layer vendors {
-}
+// @layer vendors {}
 
 body {
   background-color: var(--app-bg-color);

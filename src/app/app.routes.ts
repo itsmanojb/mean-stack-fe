@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, Routes } from '@angular/router';
-import { LoginComponent, DashboardComponent, ProjectLayoutComponent, PageNotFoundComponent } from '@app/pages/index';
+import { LoginComponent, DashboardComponent, ProjectHomeComponent, PageNotFoundComponent } from '@app/pages/index';
 import { sessionGuard, authenticationGuard } from '@utils/guards';
 import { ProjectRoutesEnum, ProjectRouteNamesEnum } from '@shared/constants';
 import { ProjectResolver } from '@utils/resolvers/project.resolver';
@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'project/:id',
     canActivate: [authenticationGuard],
-    component: ProjectLayoutComponent,
+    component: ProjectHomeComponent,
     resolve: { project: ProjectResolver },
     data: {
       breadcrumb: (route: ActivatedRouteSnapshot) =>

@@ -3,13 +3,13 @@ import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ProjectSidebarComponent } from '@components/features/project-sidebar/project-sidebar.component';
-import { TopNavbarComponent } from '@components/common/top-navbar/top-navbar.component';
+import { TopNavbarComponent } from '@components/layout';
 import { BreadcrumbsComponent } from '@components/common/breadcrumb/breadcrumbs.component';
 
 @Component({
   selector: 'app-project-home',
   imports: [RouterModule, CommonModule, TopNavbarComponent, ProjectSidebarComponent, BreadcrumbsComponent],
-  templateUrl: './project-layout.component.html',
+  templateUrl: './project-home.component.html',
   animations: [
     trigger('slideSidebar', [
       state('expanded', style({ transform: 'translateX(0)' })),
@@ -18,7 +18,7 @@ import { BreadcrumbsComponent } from '@components/common/breadcrumb/breadcrumbs.
     ]),
   ],
 })
-export class ProjectLayoutComponent implements OnInit {
+export class ProjectHomeComponent implements OnInit {
   isSidebarCollapsed = false;
   isMobile = false;
 

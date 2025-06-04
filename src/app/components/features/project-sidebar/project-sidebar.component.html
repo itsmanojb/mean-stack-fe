@@ -6,15 +6,20 @@
   role="navigation"
   aria-label="Main sidebar"
 >
-  <!-- Top (sticky) -->
-  @if (fixedHeader) {
-    <div class="sidebar-top">
-      <a class="navlink" [routerLink]="'/app'">
-        <span class="icon">🚀</span>
-        <span class="label" *ngIf="!isCollapsed">My App</span>
-      </a>
-    </div>
-  }
+  <div class="sidebar-top">
+    <button
+      type="button"
+      class="icon-btn"
+      (click)="toggle()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-label="Toggle sidebar"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </button>
+    <span class="label" *ngIf="!isCollapsed">Menu</span>
+  </div>
 
   <!-- Scrollable middle -->
   <div class="sidebar-content">
@@ -28,7 +33,21 @@
             ariaCurrentWhenActive="page"
             [title]="routeName.OVERVIEW"
           >
-            <span class="icon">🏠</span>
+            <span class="icon-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"
+                />
+              </svg>
+            </span>
             <span class="label" *ngIf="!isCollapsed">{{ routeName.OVERVIEW }}</span>
           </a>
         </li>
@@ -40,7 +59,21 @@
             ariaCurrentWhenActive="page"
             [title]="routeName.JOBS"
           >
-            <span class="icon">⚙️</span>
+            <span class="icon-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122"
+                />
+              </svg>
+            </span>
             <span class="label" *ngIf="!isCollapsed">{{ routeName.JOBS }}</span>
           </a>
         </li>
@@ -52,7 +85,21 @@
             ariaCurrentWhenActive="page"
             [title]="routeName.TASKS"
           >
-            <span class="icon">⚙️</span>
+            <span class="icon-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"
+                />
+              </svg>
+            </span>
             <span class="label" *ngIf="!isCollapsed">{{ routeName.TASKS }}</span>
           </a>
         </li>
@@ -64,7 +111,21 @@
             ariaCurrentWhenActive="page"
             [title]="routeName.UPLOAD"
           >
-            <span class="icon">📊</span>
+            <span class="icon-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
+                />
+              </svg>
+            </span>
             <span class="label" *ngIf="!isCollapsed">{{ routeName.UPLOAD }}</span>
           </a>
         </li>
@@ -76,7 +137,21 @@
             ariaCurrentWhenActive="page"
             [title]="routeName.BUILDER"
           >
-            <span class="icon">📊</span>
+            <span class="icon-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"
+                />
+              </svg>
+            </span>
             <span class="label" *ngIf="!isCollapsed">{{ routeName.BUILDER }}</span>
           </a>
         </li>
@@ -88,7 +163,18 @@
             ariaCurrentWhenActive="page"
             [title]="routeName.ANALYSIS"
           >
-            <span class="icon">📊</span>
+            <span class="icon-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+              </svg>
+            </span>
             <span class="label" *ngIf="!isCollapsed">{{ routeName.ANALYSIS }}</span>
           </a>
         </li>
@@ -99,11 +185,39 @@
   <!-- Bottom (sticky) -->
   @if (fixedFooter) {
     <div class="sidebar-bottom">
-      <button class="icon-btn" title="Help">❓</button>
-      <button class="icon-btn" title="Logout">🔒</button>
+      <button class="icon-btn" title="Help">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+          />
+        </svg>
+      </button>
+      <button class="icon-btn" title="Logout">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+          />
+        </svg>
+      </button>
     </div>
   }
 </aside>
 
 <!-- Backdrop (mobile only) -->
-<div class="backdrop" *ngIf="isMobile && !isCollapsed" (click)="onBackdrop.emit()" aria-hidden="true"></div>
+<div class="backdrop" *ngIf="isMobile && !isCollapsed" (click)="close()" aria-hidden="true"></div>

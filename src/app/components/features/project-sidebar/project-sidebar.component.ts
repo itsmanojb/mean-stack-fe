@@ -19,16 +19,23 @@ import { ProjectRoutesEnum, ProjectRouteNamesEnum } from '@shared/constants';
 })
 export class ProjectSidebarComponent {
   @Input() projectId: string | null = null;
-  @Input() fixedHeader = false;
   @Input() fixedFooter = false;
   @Input() isCollapsed = false;
   @Input() isMobile = false;
-  @Output() onBackdrop = new EventEmitter<void>();
+  @Output() onToggle = new EventEmitter<void>();
 
   protected routePath = ProjectRoutesEnum;
   protected routeName = ProjectRouteNamesEnum;
 
   get sidebarState() {
     return this.isCollapsed ? 'collapsed' : 'expanded';
+  }
+
+  toggle(): void {
+    this.onToggle.emit();
+  }
+
+  close(): void {
+    this.onToggle.emit();
   }
 }

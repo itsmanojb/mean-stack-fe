@@ -1,4 +1,6 @@
 aside.project-sidebar {
+  --link-item-size: 44px;
+
   position: fixed;
   top: var(--layout-header-height);
   left: 0;
@@ -11,63 +13,6 @@ aside.project-sidebar {
   overflow: hidden;
   z-index: 1050;
 
-  .sidebar-content {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 0.5rem;
-
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
-    }
-
-    &:hover::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        margin-bottom: 2px;
-      }
-    }
-  }
-
-  .sidebar-bottom {
-    padding: 0.5rem;
-    border-top: 1px solid var(--app-sidebar-border-color);
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-
-    .icon-btn {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.4rem;
-      border-radius: 4px;
-
-      &:hover {
-        background-color: var(--app-sidebar-item-bg-color-hover);
-      }
-    }
-  }
-
   &.mobile {
     transition: none;
     width: var(--layout-sidebar-width);
@@ -76,6 +21,10 @@ aside.project-sidebar {
     left: 0;
     height: calc(100% - var(--layout-header-height));
     z-index: 1050;
+
+    .sidebar-top {
+      display: none;
+    }
   }
 
   &.collapsed {
@@ -106,16 +55,11 @@ aside.project-sidebar {
 }
 
 .sidebar-top {
+  display: flex;
+  align-items: center;
   padding: 0.5rem;
   border-bottom: 1px solid var(--app-sidebar-border-color);
   flex-shrink: 0;
-
-  .back-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 0.5rem;
-  }
 }
 
 .navlink {
@@ -123,10 +67,13 @@ aside.project-sidebar {
   align-items: center;
   text-decoration: none;
   background-color: var(--app-sidebar-item-bg-color);
-  padding: 0.5rem;
+  border: none;
   border-radius: var(--radius-sm);
   transition: background 0.2s ease;
   color: var(--app-sidebar-item-text-color);
+  cursor: pointer;
+  height: var(--link-item-size);
+  min-width: var(--link-item-size);
 
   &:hover {
     color: var(--app-sidebar-item-text-color-hover);
@@ -143,15 +90,86 @@ aside.project-sidebar {
   }
 }
 
-.icon {
-  width: 24px;
-  text-align: center;
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
   font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 4px;
+  height: var(--link-item-size);
+  width: var(--link-item-size);
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  &:hover {
+    color: var(--app-sidebar-item-text-color-hover);
+    background-color: var(--app-sidebar-item-bg-color-hover);
+  }
+
+  &.active {
+    color: var(--app-sidebar-item-text-color-active);
+    background-color: var(--app-sidebar-item-bg-color-active);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+  }
 }
 
 .label {
-  margin-left: 1.5rem;
+  margin-left: 0.5rem;
   white-space: nowrap;
   font-size: 1rem;
   color: var(--app-sidebar-item-text-color);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem;
+
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li + li {
+      margin-block-start: 0.5rem;
+    }
+  }
+}
+
+.sidebar-bottom {
+  padding: 0.5rem;
+  border-top: 1px solid var(--app-sidebar-border-color);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
 }

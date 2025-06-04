@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ConfirmDialogService } from '@shared/confirm-dialog/confirm-dialog.service';
 import { MenuButtonComponent } from '@components/common/menu-button/menu-button.component';
@@ -16,7 +16,13 @@ type MenuOption = {
   styleUrl: './top-navbar.component.scss',
 })
 export class TopNavbarComponent {
+  @Input('toggleMenu') showToogleMenuButton = false;
+  @Input('menuCollapsed') isCollapsed = false;
+  @Input() isMobile = false;
+  @Output() onMenuToggle = new EventEmitter<boolean>();
+
   private confirmService = inject(ConfirmDialogService);
+
   accountOptions: MenuOption[] = [
     {
       id: 1,
@@ -34,6 +40,10 @@ export class TopNavbarComponent {
       act: 'logout',
     },
   ];
+
+  toggle(): void {
+    this.onMenuToggle.emit(this.isCollapsed);
+  }
 
   onOptionSelected(e: MenuOption) {
     switch (e.act) {
