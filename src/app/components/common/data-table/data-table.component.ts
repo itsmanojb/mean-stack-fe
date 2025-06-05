@@ -1,14 +1,29 @@
-import { Component, Input, signal, TemplateRef, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  signal,
+  TemplateRef,
+  OnInit,
+  HostListener,
+  Output,
+  EventEmitter,
+  ContentChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';
 
 export interface TableColumn<T = any> {
   field: Extract<keyof T, string>;
   header: string;
+  template?: TemplateRef<any> | null;
   fixed?: boolean;
   sortable?: boolean;
-  template?: TemplateRef<any> | null;
   visible?: boolean;
+  filterable?: boolean;
+  filterType?: 'text' | 'select' | 'multi-select';
+  filterOptions?: { label: string; value: any }[];
+  placeholder?: string;
 }
 
 @Component({
@@ -18,6 +33,7 @@ export interface TableColumn<T = any> {
   styleUrl: './data-table.component.scss',
 })
 export class DataTableComponent<T extends object> implements OnInit {
+  @Input() loading: boolean = false;
   @Input({ required: true }) data: T[] = [];
   @Input({ required: true }) columns: TableColumn<T>[] = [];
   @Input() actionsTemplate?: any;
@@ -34,12 +50,16 @@ export class DataTableComponent<T extends object> implements OnInit {
   @Input() expandedWhen?: (row: T, index: number) => boolean;
 
   @Output() sortChange = new EventEmitter<{ field: string | null; direction: 'asc' | 'desc' }>();
+  @Output() filterChange = new EventEmitter<Record<string, string | string[]>>();
 
   sortColumn = signal<string | null>(null);
   sortAsc = signal(true);
 
   dropdownOpen = false;
   private defaultVisibilityMap = new Map<string, boolean>();
+
+  protected filters: Record<string, string | string[]> = {};
+  private filterInput$ = new Subject<{ field: string; value: string }>();
 
   expandedRows = new Set<number>();
 
@@ -49,6 +69,23 @@ export class DataTableComponent<T extends object> implements OnInit {
     if (!target.closest('.column-toggle-dropdown')) {
       this.dropdownOpen = false;
     }
+  }
+
+  @ContentChild('loading-template') loadingTemplate?: TemplateRef<any>;
+  get hasLoadingSlot(): boolean {
+    return !!this.loadingTemplate;
+  }
+
+  constructor() {
+    this.filterInput$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+      )
+      .subscribe(({ field, value }) => {
+        this.filters[field] = value;
+        this.filterChange.emit({ ...this.filters });
+      });
   }
 
   ngOnInit(): void {
@@ -133,6 +170,28 @@ export class DataTableComponent<T extends object> implements OnInit {
     });
   }
 
+  get hasFilterableColumns(): boolean {
+    return this.columns?.some((c) => c.filterable);
+  }
+
+  handleInput(event: Event, field: string): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.filters[field] = value;
+    this.filterInput$.next({ ...this.filters } as any);
+  }
+
+  handleSelectInput(event: Event, field: string, multi: boolean): void {
+    if (multi) {
+      const selected = Array.from((event.target as HTMLSelectElement).selectedOptions).map((option) => option.value);
+      this.filters[field] = selected;
+      this.filterInput$.next({ ...this.filters } as any);
+    } else {
+      const value = (event.target as HTMLSelectElement).value;
+      this.filters[field] = value;
+      this.filterInput$.next({ ...this.filters } as any);
+    }
+  }
+
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
@@ -159,5 +218,58 @@ export class DataTableComponent<T extends object> implements OnInit {
     } else if (this.multiExpand) {
       this.expandedRows.delete(index);
     }
+  }
+
+  getActiveFilterKeys(): string[] {
+    return Object.keys(this.filters).filter((key) => {
+      const val = this.filters[key];
+      return val !== '' && val !== undefined && !(Array.isArray(val) && val.length === 0);
+    });
+  }
+
+  hasActiveFilters(): boolean {
+    return this.getActiveFilterKeys().length > 0;
+  }
+
+  isMultiSelectFilter(field: string): boolean {
+    const col = this.columns.find((c) => c.field === field);
+    return col?.filterType === 'multi-select';
+  }
+
+  getColumnHeader(field: string): string {
+    return this.columns.find((c) => c.field === field)?.header || field;
+  }
+
+  getOptionLabel(field: string, value: any): string {
+    const col = this.columns.find((c) => c.field === field);
+    const opt = col?.filterOptions?.find((o) => o.value === value);
+    return opt?.label ?? value;
+  }
+
+  // Helper to get filters as array (for iteration)
+  getFilterArray(field: string): string[] {
+    const val = this.filters[field];
+    if (Array.isArray(val)) return val;
+    else if (val) return [val];
+    else return [];
+  }
+
+  // Remove single-value filter
+  clearFilter(field: string) {
+    this.filters[field] = '';
+    this.filterInput$.next({ ...this.filters } as any);
+  }
+
+  // Remove one value from multi-select filter
+  removeMultiSelectFilter(field: string, value: any) {
+    if (!Array.isArray(this.filters[field])) return;
+    this.filters[field] = (this.filters[field] as string[]).filter((v) => v !== value);
+    this.filterInput$.next({ ...this.filters } as any);
+  }
+
+  // Clear all filters
+  clearAllFilters() {
+    this.filters = {};
+    this.filterInput$.next({ ...this.filters } as any);
   }
 }

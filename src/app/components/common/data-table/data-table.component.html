@@ -31,63 +31,137 @@
     </label>
   </div>
 </div>
-<div class="table-outer-wrapper">
-  <div class="table-wrapper">
-    <table class="custom-table">
-      <thead [class.sticky-header]="stickyHeader">
-        <tr>
-          <th *ngIf="rowTemplate" class="expand-cell-header"></th>
-          <th
-            [class.sticky-column]="stickyColumn && col.fixed"
-            *ngFor="let col of visibleColumns"
-            (click)="col.sortable && toggleSort(col.field)"
-          >
-            {{ col.header }}
-            <span *ngIf="col.sortable && sortColumn() === col.field">
-              {{ sortAsc() ? "▲" : "▼" }}
-            </span>
-          </th>
-          <th *ngIf="actionsTemplate">Actions</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <ng-container *ngFor="let row of data; let rowIndex = index">
-          <tr>
-            <td class="expand-cell">
-              <button
-                type="button"
-                (click)="toggleRow(rowIndex); $event.stopPropagation()"
-                class="expand-btn"
-                [attr.aria-expanded]="expandedRows.has(rowIndex)"
-                aria-label="Toggle Row"
-              >
-                <span class="chevron" [class.expanded]="expandedRows.has(rowIndex)">▸</span>
-              </button>
-            </td>
-            <td [class.sticky-column]="stickyColumn && col.fixed" *ngFor="let col of visibleColumns">
-              <ng-container *ngIf="!col.template; else custom">
-                {{ row[col.field] }}
-              </ng-container>
-              <ng-template #custom>
-                <ng-container
-                  *ngTemplateOutlet="col.template ?? null; context: { $implicit: row[col.field], row: row }"
-                ></ng-container>
-              </ng-template>
-            </td>
-            <td *ngIf="actionsTemplate">
-              <ng-container *ngTemplateOutlet="actionsTemplate; context: { row: row }"></ng-container>
-            </td>
-          </tr>
+<div class="filter-chips" *ngIf="hasActiveFilters()">
+  <ng-container *ngFor="let filterKey of getActiveFilterKeys()">
+    <ng-container
+      *ngIf="filters[filterKey] !== '' && filters[filterKey] !== undefined && filters[filterKey]?.length !== 0"
+    >
+      <!-- Single-value filter -->
+      <span class="filter-chip" *ngIf="!isMultiSelectFilter(filterKey)">
+        {{ getColumnHeader(filterKey) }}: {{ filters[filterKey] }}
+        <button (click)="clearFilter(filterKey)" aria-label="Remove filter">×</button>
+      </span>
 
-          <!-- Inner Row -->
-          <tr *ngIf="expandedRows.has(rowIndex)">
-            <td [attr.colspan]="visibleColumns.length" class="inner-row-cell">
-              <ng-container *ngTemplateOutlet="rowTemplate ?? null; context: { $implicit: row }"></ng-container>
-            </td>
-          </tr>
+      <!-- Multi-select filter -->
+      <span class="filter-chip" *ngIf="isMultiSelectFilter(filterKey)">
+        {{ getColumnHeader(filterKey) }}:
+        <ng-container *ngFor="let val of getFilterArray(filterKey)">
+          <span class="chip">
+            {{ getOptionLabel(filterKey, val) }}
+            <button (click)="removeMultiSelectFilter(filterKey, val)" aria-label="Remove filter">×</button>
+          </span>
         </ng-container>
-      </tbody>
-    </table>
-  </div>
+      </span>
+    </ng-container>
+  </ng-container>
+
+  <button class="clear-all-btn" (click)="clearAllFilters()">Clear All</button>
 </div>
+
+<ng-container *ngIf="loading; else tableContent">
+  <ng-content select="[loading-template]"></ng-content>
+  <!-- Default fallback if no loading-template projected -->
+  <div class="table-loading-default" *ngIf="!hasLoadingSlot"><span class="spinner"></span> Loading...</div>
+</ng-container>
+
+<ng-template #tableContent>
+  <div class="table-outer-wrapper">
+    <div class="table-wrapper">
+      <table class="custom-table">
+        <thead [class.sticky-header]="stickyHeader">
+          <tr>
+            <th *ngIf="rowTemplate" class="expand-cell-header"></th>
+            <th
+              [class.sticky-column]="stickyColumn && col.fixed"
+              *ngFor="let col of visibleColumns"
+              (click)="col.sortable && toggleSort(col.field)"
+            >
+              {{ col.header }}
+              <span *ngIf="col.sortable && sortColumn() === col.field">
+                {{ sortAsc() ? "▲" : "▼" }}
+              </span>
+            </th>
+            <th *ngIf="actionsTemplate">Actions</th>
+          </tr>
+          <tr *ngIf="hasFilterableColumns">
+            <th></th>
+            <th *ngFor="let col of visibleColumns">
+              <ng-container *ngIf="col.filterable" [ngSwitch]="col.filterType || 'text'">
+                <!-- Text Filter -->
+                <input
+                  *ngSwitchCase="'text'"
+                  type="text"
+                  [placeholder]="col.placeholder || 'Filter...'"
+                  [value]="filters[col.field] || ''"
+                  (input)="handleInput($event, col.field)"
+                />
+
+                <!-- Single Select -->
+                <select
+                  *ngSwitchCase="'select'"
+                  [value]="filters[col.field] || ''"
+                  (change)="handleSelectInput($event, col.field, false)"
+                >
+                  <option value="">-- All --</option>
+                  <option *ngFor="let opt of col.filterOptions" [value]="opt.value">
+                    {{ opt.label }}
+                  </option>
+                </select>
+
+                <!-- Multi Select -->
+                <select *ngSwitchCase="'multi-select'" multiple (change)="handleSelectInput($event, col.field, true)">
+                  <option
+                    *ngFor="let opt of col.filterOptions"
+                    [value]="opt.value"
+                    [selected]="filters[col.field]?.includes(opt.value)"
+                  >
+                    {{ opt.label }}
+                  </option>
+                </select>
+              </ng-container>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let row of data; let rowIndex = index">
+            <tr>
+              <td class="expand-cell">
+                <button
+                  type="button"
+                  (click)="toggleRow(rowIndex); $event.stopPropagation()"
+                  class="expand-btn"
+                  [attr.aria-expanded]="expandedRows.has(rowIndex)"
+                  aria-label="Toggle Row"
+                >
+                  <span class="chevron" [class.expanded]="expandedRows.has(rowIndex)">▸</span>
+                </button>
+              </td>
+              <td [class.sticky-column]="stickyColumn && col.fixed" *ngFor="let col of visibleColumns">
+                <ng-container *ngIf="!col.template; else custom">
+                  {{ row[col.field] }}
+                </ng-container>
+                <ng-template #custom>
+                  <ng-container
+                    *ngTemplateOutlet="col.template ?? null; context: { $implicit: row[col.field], row: row }"
+                  ></ng-container>
+                </ng-template>
+              </td>
+              <td *ngIf="actionsTemplate">
+                <ng-container *ngTemplateOutlet="actionsTemplate; context: { row: row }"></ng-container>
+              </td>
+            </tr>
+
+            <!-- Inner Row -->
+            <tr *ngIf="expandedRows.has(rowIndex)">
+              <td [attr.colspan]="visibleColumns.length" class="inner-row-cell">
+                <ng-container *ngTemplateOutlet="rowTemplate ?? null; context: { $implicit: row }"></ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>

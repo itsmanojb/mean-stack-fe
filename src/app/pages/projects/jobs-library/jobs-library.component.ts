@@ -4,7 +4,8 @@ import { ButtonComponent } from '@components/common/button/button.component';
 import { PageHeadingComponent } from '@components/features/page-heading/page-heading.component';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
-import { Users } from './data';
+import { Users } from '../../../data/user-data';
+import { DummyDataService } from '@app/data/dummy-data.service';
 
 @Component({
   selector: 'app-jobs-library',
@@ -13,19 +14,43 @@ import { Users } from './data';
   styleUrl: './jobs-library.component.scss',
 })
 export class JobsLibraryComponent {
-  data = Users;
-
+  loading = true;
+  data: any[] = [];
   userColumns: TableColumn[] = [
-    { header: 'Name', field: 'name', sortable: true, fixed: true, visible: true },
-    { header: 'Email', field: 'email', sortable: true, visible: true },
-    { header: 'Role', field: 'role', visible: true },
-    { header: 'Dept.', field: 'department', visible: true },
+    { header: 'Name', field: 'name', sortable: true, fixed: true, visible: true, filterable: true },
+    { header: 'Email', field: 'email', sortable: true, visible: true, filterable: true },
+    {
+      header: 'Role',
+      field: 'role',
+      visible: true,
+      filterable: true,
+      filterType: 'multi-select',
+      filterOptions: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'User', value: 'user' },
+        { label: 'Guest', value: 'guest' },
+      ],
+    },
+    { header: 'Dept.', field: 'department', visible: true, filterable: true },
     { header: 'Address', field: 'address', visible: true },
     { header: 'Phone', field: 'phone', visible: true },
     { header: 'Skills', field: 'skills', visible: true },
     { header: 'Last Login', field: 'lastLogin', visible: true },
-    { header: 'Active', field: 'isActive', visible: true },
+    { header: 'Active', field: 'isActive', visible: true, filterable: true },
   ];
+
+  constructor(private _data: DummyDataService) {}
+
+  ngOnInit() {
+    this._data.getUsers().subscribe((data) => {
+      this.data = data;
+      this.loading = false;
+    });
+  }
+
+  onColumnFilters(filters: Record<string, string | string[]>) {
+    this._data.getUsers(filters).subscribe((data) => (this.data = data));
+  }
 
   onSortChanged(event: { field: string | null; direction: 'asc' | 'desc' }) {
     if (!event.field) return;

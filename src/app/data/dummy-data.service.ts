@@ -4,6 +4,7 @@ import { delay, switchMap } from 'rxjs/operators';
 import { SelectItem, SearchResult } from '@app/components/common/combobox/combobox.component'; // adjust path as needed
 import { formatCurrency } from '@utils/misc/helper';
 import { Project } from '@shared/interfaces/project.interface';
+import { Users } from './user-data';
 
 @Injectable({ providedIn: 'root' })
 export class DummyDataService {
@@ -333,5 +334,39 @@ export class DummyDataService {
   getFruitsByValues(values: string[]): Observable<SelectItem[]> {
     const matched = this.fruits.filter((f) => values.includes(f.value));
     return of(matched).pipe(delay(300));
+  }
+
+  getUsers(filters?: Record<string, string | string[]> | undefined): Observable<any[]> {
+    if (!filters) {
+      return of(Users).pipe(delay(2000));
+    }
+    const validFilters = Object.keys(filters)
+      .filter((key) => filters[key] !== undefined)
+      .reduce((acc: any, key) => {
+        acc[key] = filters[key];
+        return acc;
+      }, {});
+    const filteredUsers = Users.filter((user: any) => {
+      return Object.entries(validFilters).every(([field, filterValue]) => {
+        const userField = user[field];
+        if (Array.isArray(filterValue)) {
+          // Multi-select: at least one match
+          return (
+            filterValue?.length === 0 ||
+            filterValue?.some((value) => userField?.toString().toLowerCase().includes(value.toLowerCase()))
+          );
+        } else {
+          // Single value or text
+          return (
+            (filterValue as string)?.trim() === '' ||
+            userField
+              ?.toString()
+              .toLowerCase()
+              .includes((filterValue as string).toLowerCase())
+          );
+        }
+      });
+    });
+    return of(filteredUsers).pipe(delay(500));
   }
 }
