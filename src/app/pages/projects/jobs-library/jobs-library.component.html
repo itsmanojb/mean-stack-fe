@@ -4,3 +4,30 @@
     <app-button type="button" rounded="sm" color="primary"> Add Job </app-button>
   </ng-container>
 </app-page-heading>
+
+<section>
+  <app-data-table
+    [data]="data"
+    [columns]="userColumns"
+    [actionsTemplate]="actionTpl"
+    [showColumnToggles]="true"
+    [storageKey]="'user-table-columns'"
+    [showColumnToggles]="true"
+    (sortChange)="onSortChanged($event)"
+  ></app-data-table>
+</section>
+
+<ng-template #actionTpl let-row="row">
+  <button (click)="editUser(row)">Edit</button>
+  <button (click)="deleteUser(row)">Delete</button>
+</ng-template>
+
+<ng-template #customToggle>
+  <div class="my-toggle">
+    <h4>Show Columns</h4>
+    <label *ngFor="let col of userColumns">
+      <input type="checkbox" [(ngModel)]="col.visible" />
+      {{ col.header }}
+    </label>
+  </div>
+</ng-template>

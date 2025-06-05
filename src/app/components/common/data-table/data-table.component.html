@@ -1,0 +1,72 @@
+<ng-container *ngIf="showColumnToggles">
+  <ng-container *ngIf="columnToggleSlot; else defaultTogglePanel">
+    <ng-container *ngTemplateOutlet="columnToggleSlot"></ng-container>
+  </ng-container>
+
+  <ng-template #defaultTogglePanel>
+    <div class="column-toggles">
+      <label *ngFor="let col of columns">
+        <input type="checkbox" [(ngModel)]="col.visible" (change)="saveColumnVisibility()" />
+        {{ col.header }}
+      </label>
+
+      <button type="button" (click)="resetColumnVisibility()" class="reset-btn">Reset Columns</button>
+    </div>
+  </ng-template>
+</ng-container>
+
+<div class="column-toggle-dropdown" #dropdown>
+  <button type="button" (click)="toggleDropdown()" aria-haspopup="true" [attr.aria-expanded]="dropdownOpen">
+    Columns ▼
+  </button>
+
+  <div class="dropdown-panel" *ngIf="dropdownOpen" role="menu">
+    <button type="button" (click)="showAllColumns()" class="action-btn">Show All</button>
+    <button type="button" (click)="hideAllColumns()" class="action-btn">Hide All</button>
+    <hr />
+
+    <label *ngFor="let col of columns" role="menuitemcheckbox" [attr.aria-checked]="col.visible !== false">
+      <input type="checkbox" [(ngModel)]="col.visible" (change)="saveColumnVisibility()" />
+      {{ col.header }}
+    </label>
+  </div>
+</div>
+<div class="table-outer-wrapper">
+  <div class="table-wrapper">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th
+            [class.sticky-column]="col.fixed"
+            *ngFor="let col of visibleColumns"
+            (click)="col.sortable && toggleSort(col.field)"
+          >
+            {{ col.header }}
+            <span *ngIf="col.sortable && sortColumn() === col.field">
+              {{ sortAsc() ? "▲" : "▼" }}
+            </span>
+          </th>
+          <th *ngIf="actionsTemplate">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td [class.sticky-column]="col.fixed" *ngFor="let col of visibleColumns">
+            <ng-container *ngIf="!col.template; else custom">
+              {{ row[col.field] }}
+            </ng-container>
+            <ng-template #custom>
+              <ng-container
+                *ngTemplateOutlet="col.template ?? null; context: { $implicit: row[col.field], row: row }"
+              ></ng-container>
+            </ng-template>
+          </td>
+          <td *ngIf="actionsTemplate">
+            <ng-container *ngTemplateOutlet="actionsTemplate; context: { row: row }"></ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
