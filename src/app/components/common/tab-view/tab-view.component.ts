@@ -25,7 +25,7 @@ export interface TabItem {
 
 @Component({
   selector: 'app-tab-view',
-  imports: [NgTemplateOutlet, NgStyle, NgClass],
+  imports: [NgTemplateOutlet, TabComponent, NgStyle, NgClass],
   templateUrl: './tab-view.component.html',
   styleUrl: './tab-view.component.scss',
   animations: [
@@ -39,12 +39,11 @@ export interface TabItem {
   ],
 })
 export class TabViewComponent implements AfterContentInit {
-  @ContentChildren(TabComponent) tabQueryList!: QueryList<TabComponent>;
+  @ContentChildren(TabComponent) tabs!: QueryList<TabComponent>;
   @ViewChildren('tabRefs') tabRefs!: QueryList<ElementRef<HTMLElement>>;
 
   @Input({ required: false }) initialIndex = 0;
   @Output() tabChange = new EventEmitter<{ index: number; tab: TabComponent }>();
-  tabs: TabComponent[] = [];
 
   private _activeIndex: WritableSignal<number> = signal(0);
   activeIndex = computed(() => this._activeIndex());
@@ -55,7 +54,6 @@ export class TabViewComponent implements AfterContentInit {
   constructor() {}
 
   ngAfterContentInit(): void {
-    this.tabs = this.tabQueryList.toArray();
     const index = this.initialIndex < this.tabs.length ? this.initialIndex : 0;
     this._activeIndex.set(index);
 
@@ -65,10 +63,10 @@ export class TabViewComponent implements AfterContentInit {
   }
 
   selectTab(index: number) {
-    if (!this.tabs[index]?.disabled && this._activeIndex() !== index) {
+    if (!this.tabs.get(index)?.disabled && this._activeIndex() !== index) {
       this._activeIndex.set(index);
       this.updateIndicator();
-      this.tabChange.emit({ index, tab: this.tabs[index] });
+      this.tabChange.emit({ index, tab: this.tabs.get(index)! });
     }
   }
 
@@ -80,7 +78,7 @@ export class TabViewComponent implements AfterContentInit {
 
       do {
         nextIndex = (nextIndex + dir + this.tabs.length) % this.tabs.length;
-      } while (this.tabs[nextIndex]?.disabled && nextIndex !== currentIndex);
+      } while (this.tabs.get(nextIndex)?.disabled && nextIndex !== currentIndex);
 
       this.selectTab(nextIndex);
       queueMicrotask(() => {

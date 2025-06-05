@@ -6,33 +6,24 @@
 </app-page-heading>
 
 <section>
-  <app-tab-view [initialIndex]="initialIndex" (tabChange)="onTabChanged($event)">
-    <app-tab label="Project Overview" customClass="home-tab">
-      <ng-template #tabIcon>
-        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+  <app-tab-view [initialIndex]="initialIndex" (tabChange)="onTabChange($event)">
+    <app-tab customClass="xx">
+      <ng-template tabLabel>
+        <span style="font-weight: bold">🔥 Alerts</span>
       </ng-template>
-      <ng-template>
-        <p>This is Tab 1 content with <strong>HTML</strong>.</p>
+
+      <ng-template #tabContent>
+        <p>This is the alerts content</p>
       </ng-template>
     </app-tab>
 
-    <app-tab label="Jobs Overview">
-      <ng-template #tabIcon> ⚙️ </ng-template>
-      <ng-template>
-        <p>This tab is <em>disabled</em>.</p>
+    <app-tab label="Plain">
+      <ng-template #tabContent>
+        <p>This is a plain tab</p>
       </ng-template>
     </app-tab>
-
-    <app-tab label="Tasks Overview" [disabled]="true">
-      <ng-template>
-        <p>Another projected tab content.</p>
-      </ng-template>
-    </app-tab>
-
-    <app-tab label="Detailed Analysis">
-      <ng-template>
-        <p>Another projected tab content.</p>
-      </ng-template>
+    <app-tab label="Settings">
+      <p>General settings go here.</p>
     </app-tab>
   </app-tab-view>
 </section>

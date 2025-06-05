@@ -1,6 +1,6 @@
 <div class="tab-container">
   <ul class="tab-list" role="tablist" #tabList>
-    @for (tab of tabs; track $index; let i = $index) {
+    @for (tab of tabs.toArray(); track $index; let i = $index) {
       <li
         #tabRefs
         class="tab-item"
@@ -13,18 +13,19 @@
         [attr.aria-selected]="i === activeIndex()"
         [attr.tabindex]="activeIndex() === i ? 0 : -1"
       >
-        @if (tab.iconTemplate) {
-          <ng-container [ngTemplateOutlet]="tab.iconTemplate" class="tab-icon"></ng-container>
+        @if (tab.labelTpl) {
+          <ng-container *ngTemplateOutlet="tab.labelTpl.templateRef"></ng-container>
+        } @else {
+          <span class="tab-label">{{ tab.label }}</span>
         }
-        <span class="tab-label">{{ tab.label }}</span>
       </li>
     }
     <div class="tab-indicator" [ngStyle]="indicatorStyle()"></div>
   </ul>
 
-  <div class="tab-content" [@fadeSlide]>
-    @if (tabs.length > 0) {
-      <ng-container *ngTemplateOutlet="tabs[activeIndex()]?.content!"></ng-container>
+  <div class="tab-content" role="tabpanel" [@fadeSlide]>
+    @if (tabs.get(activeIndex())?.contentTpl; as activeTab) {
+      <ng-container *ngTemplateOutlet="activeTab"></ng-container>
     }
   </div>
 </div>
