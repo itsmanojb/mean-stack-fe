@@ -25,6 +25,13 @@ export class DataTableComponent<T extends object> implements OnInit {
   @Input() showColumnToggles = true;
   @Input() columnToggleSlot: TemplateRef<any> | null = null;
   @Input() storageKey: string | null = null;
+  @Input() stickyHeader?: boolean;
+  @Input() stickyColumn?: boolean;
+
+  @Input() rowTemplate?: TemplateRef<any>;
+  @Input() multiExpand: boolean = true;
+  @Input() expandedRowIndices?: number[] = [];
+  @Input() expandedWhen?: (row: T, index: number) => boolean;
 
   @Output() sortChange = new EventEmitter<{ field: string | null; direction: 'asc' | 'desc' }>();
 
@@ -33,6 +40,8 @@ export class DataTableComponent<T extends object> implements OnInit {
 
   dropdownOpen = false;
   private defaultVisibilityMap = new Map<string, boolean>();
+
+  expandedRows = new Set<number>();
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
@@ -45,6 +54,13 @@ export class DataTableComponent<T extends object> implements OnInit {
   ngOnInit(): void {
     this.captureDefaultVisibility();
     this.loadColumnVisibility();
+    if (this.expandedWhen) {
+      this.expandedRows = new Set(
+        this.data.map((row, i) => (this.expandedWhen!(row, i) ? i : -1)).filter((i) => i >= 0),
+      );
+    } else {
+      this.expandedRows = new Set(this.expandedRowIndices);
+    }
   }
 
   private captureDefaultVisibility() {
@@ -129,5 +145,19 @@ export class DataTableComponent<T extends object> implements OnInit {
   hideAllColumns() {
     this.columns.forEach((col) => (col.visible = false));
     this.saveColumnVisibility();
+  }
+
+  toggleRow(index: number): void {
+    const alreadyExpanded = this.expandedRows.has(index);
+
+    if (!this.multiExpand) {
+      this.expandedRows.clear();
+    }
+
+    if (!alreadyExpanded) {
+      this.expandedRows.add(index);
+    } else if (this.multiExpand) {
+      this.expandedRows.delete(index);
+    }
   }
 }

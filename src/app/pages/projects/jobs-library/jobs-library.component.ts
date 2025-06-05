@@ -45,4 +45,8 @@ export class JobsLibraryComponent {
   editUser(row: any) {}
 
   deleteUser(row: any) {}
+
+  shouldExpand(row: any, index: number): boolean {
+    return row.role === 'admin';
+  }
 }

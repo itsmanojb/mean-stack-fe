@@ -3,12 +3,23 @@ table {
   border-collapse: collapse;
   min-width: 600px; // ensures horizontal scroll trigger
 
-  thead {
+  thead.sticky-header {
     position: sticky;
     top: 0;
     z-index: 3;
     background: #888; // Or match your theme background
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Optional subtle shadow
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+      &.sticky-column {
+        z-index: 3;
+      }
+    }
   }
 
   th,
@@ -21,23 +32,15 @@ table {
     text-overflow: ellipsis;
     max-width: 200px;
   }
-
-  thead th {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-
-    &.sticky-column {
-      z-index: 3;
-    }
-  }
 }
 
 .table-outer-wrapper {
-  max-height: 60vh;
-  overflow-y: auto;
   position: relative;
+
+  &:has(.sticky-column) {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
 }
 
 .table-wrapper {
@@ -158,4 +161,28 @@ table {
       border-top: 1px solid #eee;
     }
   }
+}
+
+.expand-cell,
+.expand-cell-header {
+  width: 2rem;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.chevron {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.chevron.expanded {
+  transform: rotate(90deg);
 }

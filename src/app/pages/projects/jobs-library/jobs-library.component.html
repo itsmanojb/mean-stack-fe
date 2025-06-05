@@ -10,6 +10,9 @@
     [data]="data"
     [columns]="userColumns"
     [actionsTemplate]="actionTpl"
+    [rowTemplate]="userDetailTemplate"
+    [multiExpand]="true"
+    [expandedWhen]="shouldExpand"
     [showColumnToggles]="true"
     [storageKey]="'user-table-columns'"
     [showColumnToggles]="true"
@@ -29,5 +32,12 @@
       <input type="checkbox" [(ngModel)]="col.visible" />
       {{ col.header }}
     </label>
+  </div>
+</ng-template>
+
+<ng-template #userDetailTemplate let-user>
+  <div class="user-details">
+    <p><strong>Address:</strong> {{ user.address }}</p>
+    <p><strong>Phone:</strong> {{ user.phone }}</p>
   </div>
 </ng-template>

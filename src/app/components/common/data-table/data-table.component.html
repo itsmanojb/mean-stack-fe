@@ -34,10 +34,11 @@
 <div class="table-outer-wrapper">
   <div class="table-wrapper">
     <table class="custom-table">
-      <thead>
+      <thead [class.sticky-header]="stickyHeader">
         <tr>
+          <th *ngIf="rowTemplate" class="expand-cell-header"></th>
           <th
-            [class.sticky-column]="col.fixed"
+            [class.sticky-column]="stickyColumn && col.fixed"
             *ngFor="let col of visibleColumns"
             (click)="col.sortable && toggleSort(col.field)"
           >
@@ -51,21 +52,41 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let row of data">
-          <td [class.sticky-column]="col.fixed" *ngFor="let col of visibleColumns">
-            <ng-container *ngIf="!col.template; else custom">
-              {{ row[col.field] }}
-            </ng-container>
-            <ng-template #custom>
-              <ng-container
-                *ngTemplateOutlet="col.template ?? null; context: { $implicit: row[col.field], row: row }"
-              ></ng-container>
-            </ng-template>
-          </td>
-          <td *ngIf="actionsTemplate">
-            <ng-container *ngTemplateOutlet="actionsTemplate; context: { row: row }"></ng-container>
-          </td>
-        </tr>
+        <ng-container *ngFor="let row of data; let rowIndex = index">
+          <tr>
+            <td class="expand-cell">
+              <button
+                type="button"
+                (click)="toggleRow(rowIndex); $event.stopPropagation()"
+                class="expand-btn"
+                [attr.aria-expanded]="expandedRows.has(rowIndex)"
+                aria-label="Toggle Row"
+              >
+                <span class="chevron" [class.expanded]="expandedRows.has(rowIndex)">▸</span>
+              </button>
+            </td>
+            <td [class.sticky-column]="stickyColumn && col.fixed" *ngFor="let col of visibleColumns">
+              <ng-container *ngIf="!col.template; else custom">
+                {{ row[col.field] }}
+              </ng-container>
+              <ng-template #custom>
+                <ng-container
+                  *ngTemplateOutlet="col.template ?? null; context: { $implicit: row[col.field], row: row }"
+                ></ng-container>
+              </ng-template>
+            </td>
+            <td *ngIf="actionsTemplate">
+              <ng-container *ngTemplateOutlet="actionsTemplate; context: { row: row }"></ng-container>
+            </td>
+          </tr>
+
+          <!-- Inner Row -->
+          <tr *ngIf="expandedRows.has(rowIndex)">
+            <td [attr.colspan]="visibleColumns.length" class="inner-row-cell">
+              <ng-container *ngTemplateOutlet="rowTemplate ?? null; context: { $implicit: row }"></ng-container>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>
