@@ -12,6 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';
+import { PaginatorComponent } from '@components/common/paginator/paginator.component';
 
 export interface TableColumn<T = any> {
   field: Extract<keyof T, string>;
@@ -28,7 +29,7 @@ export interface TableColumn<T = any> {
 
 @Component({
   selector: 'app-data-table',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PaginatorComponent],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss',
 })
@@ -271,5 +272,15 @@ export class DataTableComponent<T extends object> implements OnInit {
   clearAllFilters() {
     this.filters = {};
     this.filterInput$.next({ ...this.filters } as any);
+  }
+
+  total = 300;
+
+  onPageChange(page: number) {
+    console.log('Go to page:', page);
+  }
+
+  onPageSizeChange(size: number) {
+    console.log('Page size selected:', size);
   }
 }

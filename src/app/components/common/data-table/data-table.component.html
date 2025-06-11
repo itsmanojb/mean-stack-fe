@@ -61,7 +61,6 @@
 
 <ng-container *ngIf="loading; else tableContent">
   <ng-content select="[loading-template]"></ng-content>
-  <!-- Default fallback if no loading-template projected -->
   <div class="table-loading-default" *ngIf="!hasLoadingSlot"><span class="spinner"></span> Loading...</div>
 </ng-container>
 
@@ -84,7 +83,7 @@
             </th>
             <th *ngIf="actionsTemplate">Actions</th>
           </tr>
-          <tr *ngIf="hasFilterableColumns">
+          <tr class="filter-row" *ngIf="hasFilterableColumns">
             <th></th>
             <th *ngFor="let col of visibleColumns">
               <ng-container *ngIf="col.filterable" [ngSwitch]="col.filterType || 'text'">
@@ -161,6 +160,15 @@
             </tr>
           </ng-container>
         </tbody>
+
+        <tfoot>
+          <tr>
+            <td [colSpan]="visibleColumns.length + 2">
+              <app-paginator [totalItems]="total" [showPageSizeSelector]="false" (pageChange)="onPageChange($event)">
+              </app-paginator>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>

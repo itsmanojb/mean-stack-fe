@@ -1,0 +1,43 @@
+@if (!isDisabled()) {
+  <div class="pagination-container">
+    <span class="page-indicator" [attr.aria-label]="'Page ' + currentPage() + ' of ' + totalPages()"
+      >Page {{ currentPage() }} of {{ totalPages() }}</span
+    >
+
+    @if (totalPages() > 1) {
+      @if (showPageSizeSelector) {
+        <div class="page-size">
+          <label for="page-size">Items per page:</label>
+          <select id="page-size" [ngModel]="pageSize()" (change)="onPageSizeChange($event)">
+            <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+          </select>
+        </div>
+      }
+
+      <div class="nav-buttons">
+        <app-button
+          type="button"
+          variant="outline"
+          color="primary"
+          size="md"
+          rounded="md"
+          (click)="prevPage()"
+          [disabled]="currentPage() === 1"
+          aria-label="Previous page"
+          >Prev</app-button
+        >
+        <app-button
+          type="button"
+          variant="outline"
+          color="primary"
+          size="md"
+          rounded="md"
+          (click)="nextPage()"
+          [disabled]="currentPage() === totalPages()"
+          aria-label="Next page"
+          >Next</app-button
+        >
+      </div>
+    }
+  </div>
+}

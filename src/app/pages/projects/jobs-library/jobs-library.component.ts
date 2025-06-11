@@ -24,7 +24,7 @@ export class JobsLibraryComponent {
       field: 'role',
       visible: true,
       filterable: true,
-      filterType: 'multi-select',
+      filterType: 'select',
       filterOptions: [
         { label: 'Admin', value: 'admin' },
         { label: 'User', value: 'user' },

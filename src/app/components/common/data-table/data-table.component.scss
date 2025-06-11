@@ -1,19 +1,28 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; // ensures horizontal scroll trigger
+  min-width: 600px;
+
+  thead tr {
+    background: var(--table-header-bg-color);
+    border-bottom: 1px solid var(--table-border-color);
+
+    th {
+      padding: 0.5rem;
+    }
+  }
 
   thead.sticky-header {
     position: sticky;
-    top: 0;
+    top: -1px;
     z-index: 3;
-    background: #888; // Or match your theme background
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Optional subtle shadow
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
     th {
       position: sticky;
       top: 0;
       z-index: 2;
+      background: var(--table-header-bg-color);
       box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 
       &.sticky-column {
@@ -24,13 +33,14 @@ table {
 
   th,
   td {
-    padding: 0.75rem;
     text-align: left;
     white-space: nowrap;
-    border-bottom: 1px solid #ddd;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+    padding: 0.25rem 0.5rem;
+    text-align: left;
+    font-size: 0.9rem;
   }
 }
 
@@ -45,15 +55,15 @@ table {
 
 .table-wrapper {
   max-width: 100%;
-  border: 1px solid #ccc;
 }
 
 .sticky-column {
   position: sticky;
-  left: 0;
+  left: -1px;
   z-index: 2;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
-  background-color: #888;
+  background-color: var(--table-header-bg-color);
+  border-right: 1px solid var(--table-border-color);
 }
 
 @media (max-width: 768px) {
@@ -70,12 +80,11 @@ table {
 .custom-table {
   width: 100%;
   border-collapse: collapse;
+  border-block: 1px solid var(--table-border-color);
 
   th,
   td {
-    border: 1px solid #ccc;
-    padding: 0.75rem;
-    text-align: left;
+    border-inline: 1px solid var(--table-border-color);
   }
 
   th {
@@ -83,7 +92,14 @@ table {
     user-select: none;
   }
 
-  tbody tr:hover {
+  tr.filter-row {
+    th {
+      padding: 4px;
+    }
+  }
+
+  tfoot tr {
+    border-block-start: 1px solid var(--table-border-color);
   }
 }
 
@@ -114,7 +130,6 @@ table {
 .column-toggle-dropdown {
   position: relative;
   display: block;
-  float: right;
 
   button {
     cursor: pointer;
@@ -123,7 +138,7 @@ table {
   .dropdown-panel {
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
     border: 1px solid #ccc;
     padding: 0.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -188,20 +203,23 @@ table {
 }
 
 .table-loading-default {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
-  color: #666;
+  min-height: 50vh;
+  color: var(--app-fg-color);
+  gap: 1rem;
 }
 
 .spinner {
   width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid #ccc;
-  border-top: 2px solid #3f51b5;
+  aspect-ratio: 1;
+  border: 2px solid var(--app-bg-color-muted);
+  border-top: 2px solid var(--color-primary);
   border-radius: 50%;
   display: inline-block;
   animation: spin 0.6s linear infinite;
-  margin-right: 0.5rem;
 }
 
 @keyframes spin {
@@ -266,4 +284,29 @@ table {
   font-weight: 600;
   margin-left: auto;
   height: 1.8rem;
+}
+
+.filter-row {
+  input,
+  select {
+    border-radius: var(--radius-sm);
+    font-weight: normal;
+    padding: 0.45rem 0.75rem;
+    width: 100%;
+    font-size: 0.9rem;
+    appearance: none;
+    min-width: 120px;
+    border: 1px solid var(--input-border-color);
+    background-color: transparent;
+
+    &::placeholder {
+      color: var(--input-placeholder-color);
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: inset 0 0 0 1px var(--color-primary);
+    }
+  }
 }

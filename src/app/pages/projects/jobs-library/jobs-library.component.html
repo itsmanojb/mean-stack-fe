@@ -14,9 +14,10 @@
     [rowTemplate]="userDetailTemplate"
     [multiExpand]="true"
     [expandedWhen]="shouldExpand"
+    [stickyHeader]="true"
+    [stickyColumn]="true"
     [showColumnToggles]="true"
     [storageKey]="'user-table-columns'"
-    [showColumnToggles]="true"
     (sortChange)="onSortChanged($event)"
     (filterChange)="onColumnFilters($event)"
   ></app-data-table>
