@@ -1,0 +1,35 @@
+<div class="trends">
+  <div class="trend">
+    <div *ngTemplateOutlet="trend1Skeleton"></div>
+  </div>
+  <div class="trend">
+    <div *ngTemplateOutlet="trend2Skeleton"></div>
+  </div>
+</div>
+
+<ng-template #trend1Skeleton>
+  <div class="bar-skeleton" [class.loading]="loading">
+    @for (_ of [].constructor(placeholderDataCount); track $index) {
+      <div class="bar"></div>
+    }
+  </div>
+  <div class="labels">
+    @for (_ of [].constructor(placeholderDataCount); track $index) {
+      <div class="placeholder"></div>
+    }
+  </div>
+</ng-template>
+
+<ng-template #trend2Skeleton>
+  <div class="pie-skeleton" [class.loading]="loading">
+    <div class="pie"></div>
+    <div class="legend-placeholder">
+      @for (_ of [].constructor(4); track $index) {
+        <div class="legend-item">
+          <div class="circle"></div>
+          <div class="text-placeholder"></div>
+        </div>
+      }
+    </div>
+  </div>
+</ng-template>

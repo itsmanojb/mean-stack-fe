@@ -8,6 +8,7 @@ import { ProjectsListComponent } from '@components/features/projects-list/projec
 import { ProjectFormComponent } from '@components/features/project-form/project-form.component';
 import { SelectItem } from '@components/common/select-input/select-input.component';
 import { ButtonComponent } from '@components/common/button/button.component';
+import { TopNavbarComponent } from '@components/layout';
 import { CommonModalService } from '@shared/common-modal/common-modal.service';
 import { ToastService } from '@shared/toast/toast.service';
 import { TooltipDirective } from '@shared/tooltip/tooltip.directive';
@@ -19,6 +20,7 @@ import { DummyDataService } from '@app/data/dummy-data.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    TopNavbarComponent,
     ProjectsGridComponent,
     ProjectsListComponent,
     TooltipDirective,
@@ -31,7 +33,7 @@ export class DashboardComponent {
   loading = signal(true);
   items = signal<Project[]>([]);
 
-  viewAs: 'grid' | 'list' = 'grid';
+  viewAs: 'grid' | 'list' = 'list';
 
   /** Add Project modal props */
 

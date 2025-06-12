@@ -10,7 +10,7 @@
 /* Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
+  // scrollbar-color: transparent transparent;
 
   &::-webkit-scrollbar {
     width: 6px;

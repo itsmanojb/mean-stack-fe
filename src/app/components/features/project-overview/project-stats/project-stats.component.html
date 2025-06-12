@@ -1,0 +1,18 @@
+<div class="wrapper flat">
+  <div class="tiles" [class.loading]="loading">
+    @if (loading) {
+      @for (_ of [].constructor(8); track $index) {
+        <div class="tile"></div>
+      }
+    } @else {
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+    }
+  </div>
+</div>

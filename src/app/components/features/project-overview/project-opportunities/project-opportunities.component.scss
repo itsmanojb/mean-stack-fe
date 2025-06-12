@@ -1,0 +1,225 @@
+.tabs {
+  margin: 1rem 0 1.5rem;
+  border: 1px solid var(--app-line-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+
+  div {
+    flex: 1;
+    height: 30px;
+    & + div {
+      border-left: 1px solid var(--app-line-color);
+    }
+    &:first-child {
+      background-color: var(--app-line-color);
+    }
+  }
+}
+
+.graph-wrapper {
+  border: 1px solid var(--app-line-color);
+  border-radius: var(--radius-md);
+  padding: 2rem 4rem;
+
+  &.loading {
+    animation: pulsate 1.5s infinite;
+  }
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.label {
+  width: 100px;
+  height: 12px;
+  background-color: var(--app-line-color);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.bar-container {
+  display: flex;
+  flex: 1;
+  height: 24px;
+  border: 1px solid var(--app-line-color);
+  border-radius: 4px;
+  overflow: hidden;
+
+  .bar {
+    &:nth-child(1) {
+      background: var(--color-black-25);
+    }
+    &:nth-child(2) {
+      background: var(--color-black-15);
+    }
+    &:nth-child(3) {
+      background: var(--color-black-35);
+    }
+    &:nth-child(4) {
+      background: var(--color-black-30);
+    }
+    &:nth-child(5) {
+      background: var(--color-black-25);
+    }
+    height: 100%;
+  }
+}
+
+.legends {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color);
+  }
+
+  .label {
+    width: 60px;
+    height: 8px;
+    background-color: var(--app-line-color);
+    border-radius: 3px;
+  }
+
+  &:nth-child(1) .color {
+    --color: var(--color-black-25);
+  }
+  &:nth-child(2) .color {
+    --color: var(--color-black-15);
+  }
+  &:nth-child(3) .color {
+    --color: var(--color-black-35);
+  }
+  &:nth-child(4) .color {
+    --color: var(--color-black-30);
+  }
+  &:nth-child(5) .color {
+    --color: var(--color-black-25);
+  }
+}
+
+.table-wrapper {
+  border: 1px solid var(--app-line-color);
+  border-radius: var(--radius-md);
+  margin-block: 1rem;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 1rem;
+
+    th {
+      border-bottom: 1px solid var(--app-line-color);
+      padding: 1rem 1rem 1.5rem;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      span {
+        display: inline-block;
+        height: 15px;
+        width: 240px;
+        border-radius: 6px;
+        background-color: var(--app-line-color);
+
+        &:last-of-type {
+          width: 100px;
+          border: 2px solid var(--app-line-color);
+          background-color: transparent;
+          height: 36px;
+        }
+      }
+    }
+
+    td {
+      border-top: 1px solid var(--app-line-color);
+      padding: 0.65rem 1rem 0.45rem;
+
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+  }
+}
+
+.skel {
+  display: inline-block;
+  height: 14px;
+  width: 120px;
+  border-radius: 4px;
+  background-color: var(--app-line-color);
+}
+
+.loading {
+  .skel {
+    animation: pulsate 1.5s infinite;
+  }
+
+  table td {
+    &:nth-child(1) .skel {
+      animation-delay: 0s;
+    }
+    &:nth-child(2) .skel {
+      animation-delay: 0.1s;
+    }
+    &:nth-child(3) .skel {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(4) .skel {
+      animation-delay: 0.3s;
+    }
+    &:nth-child(5) .skel {
+      animation-delay: 0.4s;
+    }
+    &:nth-child(6) .skel {
+      animation-delay: 0.5s;
+    }
+    &:nth-child(7) .skel {
+      animation-delay: 0.6s;
+    }
+    &:nth-child(8) .skel {
+      animation-delay: 0.7s;
+    }
+  }
+}
+
+@keyframes pulsate {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skel,
+  .graph-wrapper {
+    animation: none !important;
+  }
+}

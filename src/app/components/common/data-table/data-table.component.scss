@@ -106,25 +106,10 @@ table {
 .column-toggles {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  padding-block: 1rem;
   gap: 1rem;
-  margin-bottom: 1rem;
-
-  label {
-    font-size: 0.9rem;
-    cursor: pointer;
-  }
-}
-
-.reset-btn {
-  margin-top: 0.5rem;
-  padding: 4px 8px;
-  font-size: 0.85rem;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  border-radius: 4px;
-
-  &:hover {
-  }
+  border-bottom: 1px solid var(--app-line-color);
 }
 
 .column-toggle-dropdown {
@@ -136,17 +121,18 @@ table {
   }
 
   .dropdown-panel {
-    position: absolute;
+    /*     position: absolute;
     top: 100%;
     left: 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--menu-border-color);
     padding: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     z-index: 100;
     min-width: 180px;
     max-height: 250px;
     overflow-y: auto;
-    background-color: #777;
+    background-color: var(--menu-bg-color);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md); */
 
     .action-btn {
       margin-right: 0.5rem;
@@ -176,6 +162,13 @@ table {
       border-top: 1px solid #eee;
     }
   }
+}
+
+.columns-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(-menu-item-divider-color);
 }
 
 .expand-cell,

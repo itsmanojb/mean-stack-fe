@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';
 import { PaginatorComponent } from '@components/common/paginator/paginator.component';
+import { CheckboxComponent } from '@components/common/checkbox/checkbox.component';
+import { ButtonComponent } from '@components/common/button/button.component';
 
 export interface TableColumn<T = any> {
   field: Extract<keyof T, string>;
@@ -29,7 +31,7 @@ export interface TableColumn<T = any> {
 
 @Component({
   selector: 'app-data-table',
-  imports: [CommonModule, FormsModule, PaginatorComponent],
+  imports: [CommonModule, FormsModule, PaginatorComponent, ButtonComponent, CheckboxComponent],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss',
 })

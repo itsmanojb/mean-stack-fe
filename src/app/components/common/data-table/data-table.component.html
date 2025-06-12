@@ -5,12 +5,13 @@
 
   <ng-template #defaultTogglePanel>
     <div class="column-toggles">
-      <label *ngFor="let col of columns">
-        <input type="checkbox" [(ngModel)]="col.visible" (change)="saveColumnVisibility()" />
-        {{ col.header }}
-      </label>
+      @for (col of columns; track $index) {
+        <app-checkbox [(ngModel)]="col.visible" (change)="saveColumnVisibility()" [label]="col.header"></app-checkbox>
+      }
 
-      <button type="button" (click)="resetColumnVisibility()" class="reset-btn">Reset Columns</button>
+      <app-button type="button" variant="solid" size="sm" color="primary" (click)="resetColumnVisibility()"
+        >Reset</app-button
+      >
     </div>
   </ng-template>
 </ng-container>
@@ -20,15 +21,21 @@
     Columns ▼
   </button>
 
-  <div class="dropdown-panel" *ngIf="dropdownOpen" role="menu">
+  <div class="menu" *ngIf="dropdownOpen" role="menu">
     <button type="button" (click)="showAllColumns()" class="action-btn">Show All</button>
     <button type="button" (click)="hideAllColumns()" class="action-btn">Hide All</button>
-    <hr />
-
-    <label *ngFor="let col of columns" role="menuitemcheckbox" [attr.aria-checked]="col.visible !== false">
-      <input type="checkbox" [(ngModel)]="col.visible" (change)="saveColumnVisibility()" />
-      {{ col.header }}
-    </label>
+    <div class="columns-list">
+      @for (col of columns; track $index) {
+        <div>
+          <app-checkbox
+            [(ngModel)]="col.visible"
+            (change)="saveColumnVisibility()"
+            [ariaChecked]="col.visible !== false"
+            [label]="col.header"
+          ></app-checkbox>
+        </div>
+      }
+    </div>
   </div>
 </div>
 

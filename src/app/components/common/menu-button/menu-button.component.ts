@@ -7,7 +7,6 @@ import {
   HostListener,
   signal,
   ViewChild,
-  AfterViewInit,
   Renderer2,
 } from '@angular/core';
 

@@ -1,0 +1,48 @@
+<div class="tabs">
+  @for (_ of [].constructor(5); track $index) {
+    <div></div>
+  }
+</div>
+
+<div class="graph-wrapper" [class.loading]="loading">
+  <div class="chart">
+    @for (row of placeholderData; track $index) {
+      <div class="row">
+        <div class="label"></div>
+        <div class="bar-container">
+          @for (val of row; track $index) {
+            <div class="bar" [style.width]="val + '%'"></div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <div class="legends">
+    @for (_ of [].constructor(5); track $index) {
+      <div class="legend-item">
+        <div class="color"></div>
+        <div class="label"></div>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="table-wrapper" [class.loading]="loading">
+  <table>
+    <tr>
+      <th colspan="6">
+        <div>
+          <span class="skel"></span>
+          <span></span>
+        </div>
+      </th>
+    </tr>
+    @for (_ of [].constructor(8); track $index) {
+      <tr>
+        @for (_ of [].constructor(6); track $index) {
+          <td><span class="skel"></span></td>
+        }
+      </tr>
+    }
+  </table>
+</div>
